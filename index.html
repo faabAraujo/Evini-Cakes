@@ -340,7 +340,7 @@
       font-size: 13.5px;
     }
 
-    /* Builder / Montar Bolo - Corrigido para não estourar no mobile */
+    /* Builder / Montar Bolo */
     .builder {
       display: grid;
       gap: 24px;
@@ -1442,22 +1442,22 @@
       const notes = byId("notes").value.trim();
       const lines = getCartItems().map(item => {
         const p = item.price > 0 ? ` (${money(item.price)})` : "";
-        return `• *${item.label}:* ${item.title}${p}`;
+        return `- *${item.label}:* ${item.title}${p}`;
       });
 
       const message = [
         "Olá, *Evini Cakes*! Gostaria de fazer um pedido:\n",
-        "🎂 *RESUMO DO PEDIDO*",
+        "*RESUMO DO PEDIDO*",
         ...lines,
-        `\n📅 *Data desejada:* ${formatDate(dateInput.value)}`,
-        `📝 *Observações:* ${notes || "Nenhuma."}`,
-        `\n💰 *Total estimado:* ${money(calcTotal())}`,
-        `🔑 *Chave Pix:* ${CONFIG.pixKey}`,
+        `\n*Data desejada:* ${formatDate(dateInput.value)}`,
+        `*Observações:* ${notes || "Nenhuma."}`,
+        `\n*Total estimado:* ${money(calcTotal())}`,
+        `*Chave Pix:* ${CONFIG.pixKey}`,
         "\nPodemos confirmar a disponibilidade?"
       ].join("\n");
 
       const cleanNum = CONFIG.whatsappNumber.replace(/[^0-9]/g, "");
-      window.open(`https://wa.me/${cleanNum}?text=${encodeURIComponent(message)}`, "_blank");
+      window.open(`https://api.whatsapp.com/send?phone=${cleanNum}&text=${encodeURIComponent(message)}`, "_blank");
     }
 
     function clearOrder() {
@@ -1524,7 +1524,8 @@
     byId("pixKey").textContent = CONFIG.pixKey;
     byId("instagramText").textContent = CONFIG.instagram;
 
-    const wppLink = `https://wa.me/${CONFIG.whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Olá, Evini Cakes!")}`;
+    const cleanWppNum = CONFIG.whatsappNumber.replace(/[^0-9]/g, "");
+    const wppLink = `https://api.whatsapp.com/send?phone=${cleanWppNum}&text=${encodeURIComponent("Olá, Evini Cakes!")}`;
     byId("whatsappContactBtn").href = wppLink;
     byId("instagramBtn").href = CONFIG.instagramUrl;
     byId("brandLogo").src = CONFIG.logoUrl;
