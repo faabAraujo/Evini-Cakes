@@ -2,44 +2,54 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Evini Cakes | Cardápio Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🩷</text></svg>'>
   <style>
     :root {
-      --pink-950: #8f073b;
+      --pink-950: #6b052b;
       --pink-900: #d80b58;
       --pink-800: #e01866;
+      --pink-700: #e6397b;
       --pink-600: #ec5f96;
-      --pink-400: #f28ab4;
-      --pink-200: #ffd3e4;
-      --pink-100: #ffeaf2;
-      --cream: #fff8fb;
+      --pink-400: #f48fb6;
+      --pink-200: #ffd4e5;
+      --pink-100: #ffebf3;
+      --pink-50: #fff6fa;
+      --cream: #fff9fc;
       --white: #ffffff;
-      --text: #452034;
-      --muted: #95667a;
-      --green: #22c55e;
-      --danger: #ef4444;
-      --shadow: 0 22px 60px rgba(216, 11, 88, .12);
-      --soft-shadow: 0 12px 30px rgba(216, 11, 88, .08);
-      --radius: 24px;
+      --text: #381829;
+      --muted: #8a5a6e;
+      --green: #16a34a;
+      --green-bg: #dcfce7;
+      --shadow-lg: 0 20px 50px rgba(216, 11, 88, 0.12);
+      --shadow-md: 0 10px 25px rgba(216, 11, 88, 0.08);
+      --shadow-sm: 0 4px 12px rgba(216, 11, 88, 0.05);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Reset e Base - Mobile First */
+    /* Reset & Base - Mobile First */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
       width: 100%;
       color: var(--text);
-      background: 
-        radial-gradient(circle at 10% -5%, rgba(242,138,180,.35), transparent 28%),
-        radial-gradient(circle at 90% 3%, rgba(255,211,228,.6), transparent 30%),
-        linear-gradient(180deg, #fffafd 0%, #fff0f7 100%);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(244, 143, 182, 0.28), transparent 35%),
+        radial-gradient(circle at 100% 10%, rgba(255, 212, 229, 0.5), transparent 35%),
+        linear-gradient(180deg, #fffafd 0%, #fff1f7 100%);
       background-attachment: fixed;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -50,218 +60,808 @@
       width: 100%;
       max-width: 1180px;
       margin: 0 auto;
-      padding: 16px 16px 90px;
+      padding: 12px 14px 115px;
     }
 
     /* Hero Section */
     .hero {
       position: relative;
       overflow: hidden;
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      background: rgba(255,255,255,.85);
-      border: 1px solid rgba(216,11,88,.12);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+      border-radius: var(--radius-xl);
+      padding: 18px 16px 22px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(216, 11, 88, 0.12);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
-    
+
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 32px;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(216, 11, 88, 0.08);
     }
 
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; color: var(--pink-900); }
-    .brand-logo { width: 56px; height: auto; object-fit: contain; }
-    .brand small { display: block; color: var(--muted); font-weight: 700; font-size: 12px; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--pink-900);
+      letter-spacing: -0.02em;
+    }
+    .brand-logo {
+      width: 60px;
+      height: auto;
+      max-height: 54px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12px;
+      margin-top: 2px;
+    }
 
-    .nav-links { display: none; } /* Escondido no mobile */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-bg);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+    }
+
+    .nav-links { display: none; }
+
+    .hero-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
     .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--pink-900); background: var(--pink-100);
-      padding: 8px 14px; border-radius: 999px;
-      font-weight: 800; font-size: 12px; margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--pink-900);
+      background: var(--pink-100);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
     }
 
-    h1 { font-size: clamp(36px, 10vw, 64px); line-height: 1.05; letter-spacing: -0.05em; color: var(--pink-900); margin-bottom: 16px; }
-    .hero-text p { color: var(--muted); font-size: 16px; line-height: 1.6; margin-bottom: 24px; }
-    
-    .hero-actions { display: flex; flex-direction: column; gap: 12px; }
+    h1 {
+      font-size: clamp(28px, 8vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: var(--pink-900);
+      margin-bottom: 12px;
+      font-weight: 900;
+    }
+
+    .hero-text p {
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    /* Hero Image no Mobile */
+    .hero-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 2px solid var(--white);
+      aspect-ratio: 16 / 10;
+      background: var(--pink-100);
+    }
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-card-badge {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--pink-900);
+      box-shadow: var(--shadow-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
 
     .btn {
-      border: 0; cursor: pointer; border-radius: 16px; padding: 16px 20px;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      font-weight: 800; font-size: 15px; transition: 0.2s ease;
+      border: 0;
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      padding: 15px 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 15px;
+      transition: var(--transition);
       width: 100%;
     }
-    .btn:active { transform: scale(0.98); }
-    .btn-primary { color: #fff; background: linear-gradient(135deg, var(--pink-900), var(--pink-600)); box-shadow: 0 10px 24px rgba(216,11,88,.25); }
-    .btn-secondary { color: var(--pink-900); background: #fff; border: 1px solid rgba(216,11,88,.2); }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--pink-900), var(--pink-700));
+      box-shadow: 0 10px 22px rgba(216, 11, 88, 0.25);
+    }
+    .btn-secondary {
+      color: var(--pink-900);
+      background: var(--white);
+      border: 1.5px solid rgba(216, 11, 88, 0.18);
+    }
 
-    .quick-stats { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
-    .stat { background: #fff; border: 1px solid rgba(216,11,88,.1); border-radius: 16px; padding: 16px; text-align: center; box-shadow: var(--soft-shadow); }
-    .stat strong { color: var(--pink-900); display: block; font-size: 20px; }
-    .stat span { color: var(--muted); font-size: 13px; font-weight: 600; }
-
-    .hero-card { display: none; } /* Hero Image hidden on smallest screens, shown on md */
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .stat {
+      background: var(--white);
+      border: 1px solid rgba(216, 11, 88, 0.1);
+      border-radius: var(--radius-md);
+      padding: 10px 6px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat strong {
+      color: var(--pink-900);
+      display: block;
+      font-size: 17px;
+      font-weight: 900;
+    }
+    .stat span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
 
     /* Sections Globais */
-    section { margin-top: 24px; }
+    section { margin-top: 18px; }
     .section-card {
-      background: rgba(255,255,255,.9);
-      border: 1px solid rgba(216,11,88,.12);
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(216, 11, 88, 0.11);
+      border-radius: var(--radius-xl);
+      padding: 22px 16px;
+      box-shadow: var(--shadow-lg);
     }
-    
-    .section-title { margin-bottom: 24px; }
-    .section-title h2 { color: var(--pink-900); font-size: clamp(28px, 8vw, 40px); line-height: 1.1; letter-spacing: -0.04em; }
-    .section-title p { margin-top: 8px; color: var(--muted); line-height: 1.5; font-size: 15px; }
+
+    .section-title { margin-bottom: 18px; }
+    .section-title h2 {
+      color: var(--pink-900);
+      font-size: clamp(23px, 6.5vw, 36px);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      font-weight: 900;
+    }
+    .section-title p {
+      margin-top: 6px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
 
     /* Grid Sobre & Contato */
-    .about-grid, .contact-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
-    .mini-card { background: #fff; border: 1px solid rgba(216,11,88,.1); border-radius: 20px; padding: 20px; box-shadow: var(--soft-shadow); }
-    .mini-card strong { display: block; color: var(--pink-900); margin-bottom: 8px; font-size: 16px; }
-    .mini-card p { color: var(--muted); line-height: 1.5; font-size: 14px; }
+    .about-grid, .contact-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+    .mini-card {
+      background: var(--white);
+      border: 1px solid rgba(216, 11, 88, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .mini-card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .mini-card-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--pink-100);
+      color: var(--pink-900);
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .mini-card strong {
+      color: var(--pink-900);
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .mini-card p {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 13.5px;
+    }
 
     /* Builder / Montar Bolo */
-    .builder { display: grid; gap: 24px; grid-template-columns: 1fr; }
-    
-    .progress-wrap { background: #fff; border: 1px solid rgba(216,11,88,.1); border-radius: 20px; padding: 16px; margin-bottom: 20px; box-shadow: var(--soft-shadow); }
-    .progress-top { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; font-weight: 700; margin-bottom: 12px; }
-    .progress-bar { height: 8px; background: var(--pink-100); border-radius: 999px; overflow: hidden; }
-    .progress-fill { height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, var(--pink-900), var(--pink-400)); transition: 0.3s ease; }
+    .builder {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr;
+    }
+
+    /* Barra de Progresso Sticky no Mobile */
+    .sticky-progress-container {
+      position: sticky;
+      top: 8px;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(216, 11, 88, 0.14);
+      border-radius: var(--radius-lg);
+      padding: 12px 14px 10px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 24px rgba(216, 11, 88, 0.1);
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .progress-top span:last-child {
+      color: var(--pink-900);
+      background: var(--pink-100);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .progress-bar {
+      height: 7px;
+      background: var(--pink-100);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--pink-900), var(--pink-400));
+      transition: width 0.35s ease;
+    }
 
     .steps {
-      display: flex; gap: 10px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 16px;
-      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
     .steps::-webkit-scrollbar { display: none; }
     .step-pill {
-      flex: 0 0 auto; border: 1px solid rgba(216,11,88,.14); background: #fff; color: var(--muted);
-      padding: 10px 16px; border-radius: 999px; font-weight: 700; font-size: 13px; white-space: nowrap;
+      flex: 0 0 auto;
+      border: 1px solid rgba(216, 11, 88, 0.14);
+      background: var(--pink-50);
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 12px;
+      white-space: nowrap;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
-    .step-pill.active { color: #fff; background: var(--pink-900); border-color: var(--pink-900); }
+    .step-pill.active {
+      color: var(--white);
+      background: var(--pink-900);
+      border-color: var(--pink-900);
+      box-shadow: 0 4px 10px rgba(216, 11, 88, 0.2);
+    }
 
-    .option-group { margin-top: 24px; scroll-margin-top: 24px; }
-    .group-label { color: var(--pink-900); font-size: 20px; font-weight: 800; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
-    .group-label small { font-size: 12px; color: var(--muted); font-weight: 600; background: var(--pink-100); padding: 4px 10px; border-radius: 999px; }
-    
-    .options-grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    /* Grupos de Opções */
+    .option-group {
+      margin-top: 22px;
+      scroll-margin-top: 128px;
+      padding-top: 4px;
+    }
+
+    .group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .group-label {
+      color: var(--pink-900);
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .step-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: var(--pink-900);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-grid;
+      place-items: center;
+    }
+    .group-badge {
+      font-size: 11.5px;
+      color: var(--pink-900);
+      font-weight: 700;
+      background: var(--pink-100);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .options-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+    }
 
     /* Opções (Checkboxes & Rádios) */
     .option {
-      position: relative; border: 1px solid rgba(216,11,88,.15); border-radius: 20px; padding: 16px;
-      background: #fff; cursor: pointer; transition: 0.2s ease;
-      display: flex; align-items: center; gap: 16px; text-align: left;
+      position: relative;
+      border: 1.5px solid rgba(216, 11, 88, 0.13);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      background: var(--white);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      width: 100%;
+      box-shadow: var(--shadow-sm);
     }
     .option:active { transform: scale(0.98); }
-    .option.selected { border-color: var(--pink-900); background: #fff4f9; box-shadow: 0 4px 12px rgba(216,11,88,.08); }
-    
+    .option.selected {
+      border-color: var(--pink-900);
+      background: linear-gradient(145deg, #fff5f9 0%, #ffebf3 100%);
+      box-shadow: 0 6px 16px rgba(216, 11, 88, 0.12);
+    }
+
+    .options-grid.max-reached .option:not(.selected) {
+      opacity: 0.5;
+      background: #fafafa;
+    }
+
     /* Indicadores Customizados */
     .indicator {
-      width: 24px; height: 24px; flex: 0 0 24px;
-      border: 2px solid #cbd5e1;
-      display: grid; place-items: center;
-      transition: 0.2s; background: #fff; color: transparent;
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+      border: 2px solid #d1bfd0;
+      display: grid;
+      place-items: center;
+      transition: var(--transition);
+      background: var(--white);
+      color: transparent;
     }
     .indicator.radio { border-radius: 50%; }
-    .indicator.checkbox { border-radius: 6px; }
-    .option.selected .indicator { background: var(--pink-900); border-color: var(--pink-900); color: #fff; }
-    .indicator i { font-size: 12px; }
+    .indicator.checkbox { border-radius: 8px; }
+    .option.selected .indicator {
+      background: var(--pink-900);
+      border-color: var(--pink-900);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+    .indicator i { font-size: 11px; }
 
-    .option-content { flex: 1; display: flex; flex-direction: column; }
-    .option-title { color: var(--text); font-weight: 800; font-size: 15px; }
-    .option-sub { color: var(--muted); font-size: 12px; margin-top: 4px; line-height: 1.4; }
-    .price { color: var(--pink-900); font-weight: 800; font-size: 15px; white-space: nowrap; }
+    .option-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .option-title {
+      color: var(--text);
+      font-weight: 800;
+      font-size: 14.5px;
+      line-height: 1.25;
+    }
+    .option-sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+      line-height: 1.35;
+    }
+
+    .price {
+      color: var(--pink-900);
+      background: var(--pink-50);
+      border: 1px solid rgba(216, 11, 88, 0.12);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12.5px;
+      white-space: nowrap;
+    }
+    .option.selected .price {
+      background: var(--pink-900);
+      color: var(--white);
+      border-color: var(--pink-900);
+    }
+
+    /* Botão auxiliar para avançar quando escolher apenas 1 recheio */
+    .step-next-helper {
+      margin-top: 10px;
+      display: none;
+    }
+    .step-next-helper.visible {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+    .btn-next-step {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1.5px dashed var(--pink-800);
+      background: var(--pink-50);
+      color: var(--pink-900);
+      font-weight: 800;
+      font-size: 13.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .btn-next-step:active {
+      transform: scale(0.98);
+      background: var(--pink-100);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     /* Inputs e Textarea */
     .note, .date-input {
-      width: 100%; outline: none; border: 1px solid rgba(216,11,88,.15);
-      border-radius: 20px; background: #fff; padding: 16px; color: var(--text); font-size: 15px;
+      width: 100%;
+      outline: none;
+      border: 1.5px solid rgba(216, 11, 88, 0.16);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      padding: 14px 16px;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      transition: var(--transition);
     }
-    .note { min-height: 120px; resize: vertical; }
-    .note:focus, .date-input:focus { border-color: var(--pink-900); box-shadow: 0 0 0 4px rgba(216,11,88,.1); }
-    .field-hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
+    .note { min-height: 110px; resize: vertical; font-weight: 500; }
+    .note:focus, .date-input:focus {
+      border-color: var(--pink-900);
+      box-shadow: 0 0 0 4px rgba(216, 11, 88, 0.1);
+    }
+    .field-hint {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
 
-    /* Carrinho Flutuante */
+    /* Carrinho / Resumo */
     .cart {
-      background: rgba(255,255,255,.95); backdrop-filter: blur(12px);
-      border: 1px solid rgba(216,11,88,.15); border-radius: var(--radius);
-      padding: 20px; box-shadow: 0 20px 40px rgba(216,11,88,.15);
+      background: linear-gradient(180deg, #ffffff 0%, #fff9fc 100%);
+      border: 1.5px solid rgba(216, 11, 88, 0.16);
+      border-radius: var(--radius-xl);
+      padding: 20px 16px;
+      box-shadow: var(--shadow-lg);
       position: relative;
+      scroll-margin-top: 90px;
     }
-    .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .cart-header h3 { color: var(--pink-900); font-size: 20px; font-weight: 800; }
-    .cart-badge { background: var(--pink-100); color: var(--pink-900); padding: 6px 12px; border-radius: 999px; font-weight: 800; font-size: 12px; }
-    
-    .cart-list { display: grid; gap: 10px; margin-bottom: 16px; }
-    .cart-empty { color: var(--muted); background: #fff; border: 1px dashed rgba(216,11,88,.3); border-radius: 16px; padding: 20px; text-align: center; font-size: 14px; }
-    .cart-item { display: flex; justify-content: space-between; gap: 12px; background: #fff; border: 1px solid rgba(216,11,88,.1); border-radius: 16px; padding: 14px; }
-    .cart-item-info span { color: var(--muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px; }
-    .cart-item-info strong { color: var(--text); font-size: 14px; display: block; }
-    .cart-item-price { color: var(--pink-900); font-weight: 800; }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .cart-header h3 {
+      color: var(--pink-900);
+      font-size: 19px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cart-badge {
+      background: var(--pink-100);
+      color: var(--pink-900);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+    }
 
-    .cart-total { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-top: 2px dashed rgba(216,11,88,.15); color: var(--pink-900); font-weight: 900; font-size: 22px; margin-bottom: 16px; }
+    .cart-list {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .cart-empty {
+      color: var(--muted);
+      background: var(--pink-50);
+      border: 1.5px dashed rgba(216, 11, 88, 0.25);
+      border-radius: var(--radius-md);
+      padding: 22px 14px;
+      text-align: center;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid rgba(216, 11, 88, 0.1);
+      border-radius: 14px;
+      padding: 11px 14px;
+    }
+    .cart-item-info span {
+      color: var(--muted);
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .cart-item-info strong {
+      color: var(--text);
+      font-size: 13.5px;
+      font-weight: 800;
+      display: block;
+    }
+    .cart-item-price {
+      color: var(--pink-900);
+      font-weight: 800;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-top: 2px dashed rgba(216, 11, 88, 0.15);
+      color: var(--pink-900);
+      font-weight: 900;
+      font-size: 21px;
+      margin-bottom: 14px;
+    }
     .cart-actions { display: grid; gap: 10px; }
 
     /* Contatos Customizados */
-    .contact-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; transition: 0.2s; }
-    .contact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
     .contact-icon {
-      width: 54px; height: 54px; border-radius: 18px; display: grid; place-items: center;
-      color: #fff; background: linear-gradient(135deg, var(--pink-900), var(--pink-400));
-      font-size: 24px; box-shadow: 0 10px 20px rgba(216,11,88,.2);
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--pink-900), var(--pink-400));
+      font-size: 22px;
+      box-shadow: 0 8px 18px rgba(216, 11, 88, 0.22);
     }
-    
+
     .contact-action, .copy-pix {
-      width: 100%; border-radius: 14px; padding: 12px; font-weight: 800; font-size: 14px;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
-      border: 1px solid rgba(216,11,88,.15); background: #fff; color: var(--pink-900);
-      transition: 0.2s;
+      width: 100%;
+      border-radius: 13px;
+      padding: 12px;
+      font-weight: 800;
+      font-size: 13.5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      border: 1.5px solid rgba(216, 11, 88, 0.16);
+      background: var(--pink-50);
+      color: var(--pink-900);
+      transition: var(--transition);
     }
-    .contact-action:hover, .copy-pix:hover { background: var(--pink-100); border-color: var(--pink-900); }
-    .copy-pix.copied { background: var(--green); color: #fff; border-color: var(--green); }
+    .contact-action:active, .copy-pix:active { transform: scale(0.98); }
+    .copy-pix.copied {
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green);
+    }
 
-    /* Utilitários */
+    /* Barra Fixa Inferior no Mobile (App Bar) */
+    .mobile-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(216, 11, 88, 0.15);
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 -8px 25px rgba(216, 11, 88, 0.1);
+    }
+    .mobile-bar-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .mobile-bar-info span {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .mobile-bar-info strong {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--pink-900);
+      line-height: 1.1;
+    }
+    .mobile-bar-btn {
+      width: auto;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    /* Toast Notification */
     .toast {
-      position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(20px);
-      opacity: 0; pointer-events: none; background: var(--pink-950); color: #fff;
-      padding: 14px 24px; border-radius: 999px; font-weight: 700; font-size: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.2); z-index: 999; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      text-align: center; width: max-content; max-width: 90vw;
+      position: fixed;
+      left: 50%;
+      bottom: 84px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      background: var(--pink-950);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+      z-index: 999;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      width: max-content;
+      max-width: 90vw;
     }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-    footer { text-align: center; padding: 40px 0 20px; color: var(--muted); font-size: 14px; }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
-    /* Media Queries - Desktop (A partir de 768px) */
+    footer {
+      text-align: center;
+      padding: 32px 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Media Queries - Tablet & Desktop (A partir de 768px) */
     @media (min-width: 768px) {
-      .page { padding: 40px 24px 80px; }
-      .nav-links { display: flex; gap: 24px; font-weight: 700; color: var(--muted); }
+      .page { padding: 32px 24px 60px; }
+      .brand-logo { width: 68px; max-height: 60px; }
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--muted);
+      }
       .nav-links a:hover { color: var(--pink-900); }
-      
-      .hero { padding: 48px; }
-      .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-      h1 { font-size: 56px; }
-      .hero-actions { flex-direction: row; }
-      .btn { width: auto; padding: 16px 32px; }
-      .quick-stats { grid-template-columns: repeat(3, 1fr); }
-      .hero-card { display: block; border-radius: 32px; overflow: hidden; box-shadow: var(--shadow); }
-      .hero-image { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3; }
 
-      .section-card { padding: 48px; }
-      .section-title { display: flex; justify-content: space-between; align-items: flex-end; }
-      .section-title p { max-width: 500px; text-align: right; }
+      .hero { padding: 40px; }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 36px;
+        align-items: center;
+      }
+      .hero-card { aspect-ratio: 4 / 3; }
+      .hero-actions {
+        display: flex;
+        flex-direction: row;
+      }
+      .btn { width: auto; padding: 15px 28px; }
+      .cart-actions .btn { width: 100%; }
 
+      .section-card { padding: 40px; }
       .about-grid { grid-template-columns: repeat(3, 1fr); }
       .contact-grid { grid-template-columns: repeat(4, 1fr); }
 
-      .builder { grid-template-columns: 1.5fr 1fr; align-items: start; }
+      .builder {
+        grid-template-columns: 1.45fr 1fr;
+        align-items: start;
+      }
       .options-grid { grid-template-columns: repeat(2, 1fr); }
       .cart { position: sticky; top: 24px; }
+
+      .mobile-bottom-bar { display: none; }
+      .toast { bottom: 28px; }
     }
   </style>
 </head>
@@ -271,33 +871,45 @@
     <header class="hero" id="inicio">
       <nav class="nav">
         <a class="brand" href="#inicio">
-          <img class="brand-logo" id="brandLogo" src="https://placehold.co/300x300/fff0f7/d80b58?text=Evini+Cakes" alt="Logo" />
-          <div>Evini Cakes<small>Bolos de Chantininho</small></div>
+          <img class="brand-logo" id="brandLogo" src="https://placehold.co/300x300/fff0f7/d80b58?text=Evini+Cakes" alt="Logo Evini Cakes" />
+          <div>
+            Evini Cakes
+            <small>Bolos de Chantininho</small>
+          </div>
         </a>
         <div class="nav-links">
           <a href="#sobre">Sobre</a>
           <a href="#monte">Montar bolo</a>
-          <a href="#contato">Contato</a>
+          <a href="#contato">Contato e Pix</a>
+        </div>
+        <div class="status-pill">
+          <span class="status-dot"></span> Agenda aberta
         </div>
       </nav>
 
       <div class="hero-grid">
         <div class="hero-text">
-          <span class="eyebrow"><i class="fa-solid fa-star"></i> Cardápio digital interativo</span>
+          <span class="eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> Cardápio digital interativo</span>
           <h1>Monte o seu bolo do seu jeitinho.</h1>
-          <p>Escolha tamanho, massas, recheios, cobertura e topo. O carrinho calcula tudo automaticamente e envia o pedido pronto para o WhatsApp.</p>
+          <p>Escolha tamanho, massa, até 2 recheios, cobertura e topo. O valor é calculado na hora e seu pedido vai prontinho para o nosso WhatsApp.</p>
+
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#monte">Começar pedido</a>
-            <a class="btn btn-secondary" href="#contato">Ver contatos</a>
+            <a class="btn btn-primary" href="#monte"><i class="fa-solid fa-cake-candles"></i> Começar pedido</a>
+            <a class="btn btn-secondary" href="#contato"><i class="fa-brands fa-pix"></i> Pix e Contatos</a>
           </div>
+
           <div class="quick-stats">
             <div class="stat"><strong>7</strong><span>Tamanhos</span></div>
-            <div class="stat"><strong>8</strong><span>Recheios</span></div>
-            <div class="stat"><strong>100%</strong><span>Personalizado</span></div>
+            <div class="stat"><strong>Até 2</strong><span>Recheios</span></div>
+            <div class="stat"><strong>100%</strong><span>Artesanal</span></div>
           </div>
         </div>
+
         <div class="hero-card">
           <img class="hero-image" id="heroImage" src="https://placehold.co/900x700/fff0f7/d80b58?text=Foto+do+Bolo" alt="Bolo Evini Cakes" />
+          <div class="hero-card-badge">
+            <i class="fa-solid fa-heart"></i> Feito sob encomenda
+          </div>
         </div>
       </div>
     </header>
@@ -307,21 +919,30 @@
       <div class="section-title">
         <div>
           <h2>Feito com carinho</h2>
-          <p>Bolos personalizados para momentos especiais, com sabores clássicos, opções especiais e acabamento delicado.</p>
+          <p>Bolos personalizados para momentos especiais, com ingredientes selecionados e acabamento delicado.</p>
         </div>
       </div>
       <div class="about-grid">
         <article class="mini-card">
-          <strong>Sob encomenda</strong>
+          <div class="mini-card-head">
+            <div class="mini-card-icon"><i class="fa-solid fa-calendar-check"></i></div>
+            <strong>Sob encomenda</strong>
+          </div>
           <p>Pedidos pensados para aniversário, mêsversário, celebrações e presentes especiais.</p>
         </article>
         <article class="mini-card">
-          <strong>Personalização</strong>
+          <div class="mini-card-head">
+            <div class="mini-card-icon"><i class="fa-solid fa-palette"></i></div>
+            <strong>Personalização</strong>
+          </div>
           <p>Você escolhe detalhes, tema, cores e referências para deixar tudo com a sua identidade.</p>
         </article>
         <article class="mini-card">
-          <strong>Acabamento especial</strong>
-          <p>Coberturas, topo de bolo e decoração combinando com a proposta do evento.</p>
+          <div class="mini-card-head">
+            <div class="mini-card-icon"><i class="fa-solid fa-star"></i></div>
+            <strong>Acabamento especial</strong>
+          </div>
+          <p>Coberturas em chantininho ou naked cake e topo de bolo combinando com seu evento.</p>
         </article>
       </div>
     </section>
@@ -331,82 +952,125 @@
       <div class="section-title">
         <div>
           <h2>Monte seu bolo</h2>
-          <p>Selecione as opções desejadas. Você pode escolher mais de uma massa e recheio!</p>
+          <p>Toque nas opções desejadas. Ao selecionar, o cardápio avança automaticamente para o próximo passo!</p>
         </div>
       </div>
 
       <div class="builder">
         <div>
-          <div class="progress-wrap">
+          <!-- Barra de Progresso Sticky -->
+          <div class="sticky-progress-container">
             <div class="progress-top">
               <span id="progressText">0 de 5 etapas concluídas</span>
               <span id="progressPercent">0%</span>
             </div>
             <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="steps" id="steps"></div>
           </div>
-          <div class="steps" id="steps"></div>
 
+          <!-- Etapa 1: Tamanho -->
           <div class="option-group" id="group-size">
-            <h3 class="group-label">1. Tamanho <small>Escolha 1 opção</small></h3>
+            <div class="group-header">
+              <h3 class="group-label"><span class="step-number">1</span> Tamanho</h3>
+              <span class="group-badge">Escolha 1 opção</span>
+            </div>
             <div class="options-grid" id="sizes"></div>
           </div>
+
+          <!-- Etapa 2: Massa -->
           <div class="option-group" id="group-mass">
-            <h3 class="group-label">2. Massa <small>Escolha 1 ou mais</small></h3>
+            <div class="group-header">
+              <h3 class="group-label"><span class="step-number">2</span> Massa</h3>
+              <span class="group-badge">Escolha 1 ou 2 opções</span>
+            </div>
             <div class="options-grid" id="masses"></div>
           </div>
+
+          <!-- Etapa 3: Recheio -->
           <div class="option-group" id="group-filling">
-            <h3 class="group-label">3. Recheio <small>Escolha 1 ou mais (Especiais + R$10)</small></h3>
+            <div class="group-header">
+              <h3 class="group-label"><span class="step-number">3</span> Recheio</h3>
+              <span class="group-badge" id="fillingCounterBadge">Escolha até 2 (0/2)</span>
+            </div>
             <div class="options-grid" id="fillings"></div>
-          </div>
-          <div class="option-group" id="group-covering">
-            <h3 class="group-label">4. Cobertura <small>Escolha 1 opção</small></h3>
-            <div class="options-grid" id="coverings"></div>
-          </div>
-          <div class="option-group" id="group-topper">
-            <h3 class="group-label">5. Topo de bolo <small>Escolha 1 opção</small></h3>
-            <div class="options-grid" id="toppers"></div>
-          </div>
-          
-          <div class="option-group">
-            <h3 class="group-label">6. Data desejada <small>Evento ou Retirada</small></h3>
-            <input class="date-input" id="desiredDate" type="date" />
-            <p class="field-hint">Informe a data para facilitar a confirmação de disponibilidade.</p>
+            <div class="step-next-helper" id="fillingNextHelper">
+              <button type="button" class="btn-next-step" id="btnSkipSecondFilling">
+                Continuar com apenas 1 recheio <i class="fa-solid fa-arrow-down"></i>
+              </button>
+            </div>
           </div>
 
-          <div class="option-group">
-            <h3 class="group-label">7. Observações</h3>
-            <textarea class="note" id="notes" placeholder="Ex.: tema, cores, nome, idade, restrições..."></textarea>
+          <!-- Etapa 4: Cobertura -->
+          <div class="option-group" id="group-covering">
+            <div class="group-header">
+              <h3 class="group-label"><span class="step-number">4</span> Cobertura</h3>
+              <span class="group-badge">Escolha 1 opção</span>
+            </div>
+            <div class="options-grid" id="coverings"></div>
+          </div>
+
+          <!-- Etapa 5: Topo de Bolo -->
+          <div class="option-group" id="group-topper">
+            <div class="group-header">
+              <h3 class="group-label"><span class="step-number">5</span> Topo de bolo</h3>
+              <span class="group-badge">Escolha 1 opção</span>
+            </div>
+            <div class="options-grid" id="toppers"></div>
+          </div>
+
+          <!-- Etapa 6: Data -->
+          <div class="option-group" id="group-date">
+            <div class="group-header">
+              <h3 class="group-label"><span class="step-number">6</span> Data desejada</h3>
+              <span class="group-badge">Evento ou Retirada</span>
+            </div>
+            <input class="date-input" id="desiredDate" type="date" />
+            <p class="field-hint">Informe a data para confirmarmos a disponibilidade na agenda.</p>
+          </div>
+
+          <!-- Etapa 7: Observações -->
+          <div class="option-group" id="group-notes">
+            <div class="group-header">
+              <h3 class="group-label"><span class="step-number">7</span> Observações</h3>
+              <span class="group-badge">Opcional</span>
+            </div>
+            <textarea class="note" id="notes" placeholder="Ex.: tema do bolo, cores da decoração, nome e idade para o topo, restrições..."></textarea>
           </div>
         </div>
 
-        <aside class="cart">
+        <!-- Carrinho Lateral / Resumo -->
+        <aside class="cart" id="cartSection">
           <div class="cart-header">
-            <h3>Seu carrinho</h3>
+            <h3><i class="fa-solid fa-receipt"></i> Seu pedido</h3>
             <span class="cart-badge" id="cartCount">0 itens</span>
           </div>
           <div class="cart-list" id="cartList">
-            <div class="cart-empty">Comece escolhendo o tamanho do bolo</div>
+            <div class="cart-empty">Comece escolhendo o tamanho do bolo no passo 1</div>
           </div>
-          
+
           <div class="cart-total">
             <span>Total estimado</span>
             <strong id="cartTotal">R$ 0</strong>
           </div>
-          
+
           <div class="cart-actions">
-            <button class="btn btn-primary" id="finishOrder"><i class="fa-brands fa-whatsapp"></i> Finalizar Pedido</button>
-            <button class="btn btn-secondary" id="clearOrder"><i class="fa-solid fa-trash"></i> Limpar Tudo</button>
+            <button class="btn btn-primary" id="finishOrder" type="button">
+              <i class="fa-brands fa-whatsapp"></i> Enviar Pedido no WhatsApp
+            </button>
+            <button class="btn btn-secondary" id="clearOrder" type="button">
+              <i class="fa-solid fa-rotate-left"></i> Recomeçar
+            </button>
           </div>
         </aside>
       </div>
     </section>
 
-    <!-- Contato -->
+    <!-- Contato e Pagamento -->
     <section id="contato" class="section-card">
       <div class="section-title">
         <div>
           <h2>Contato e pagamento</h2>
-          <p>Fale conosco, acompanhe nas redes ou copie a chave Pix.</p>
+          <p>Fale conosco pelo WhatsApp, acompanhe no Instagram ou copie a chave Pix.</p>
         </div>
       </div>
       <div class="contact-grid">
@@ -416,7 +1080,9 @@
             <strong>WhatsApp</strong>
             <p id="phoneText">+55 75 98145-2556</p>
           </div>
-          <a class="contact-action" id="whatsappContactBtn" href="#" target="_blank">Chamar no WhatsApp</a>
+          <a class="contact-action" id="whatsappContactBtn" href="#" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+          </a>
         </article>
 
         <article class="mini-card contact-card">
@@ -425,17 +1091,20 @@
             <strong>Instagram</strong>
             <p id="instagramText">@evinicakes</p>
           </div>
-          <a class="contact-action" id="instagramBtn" href="#" target="_blank">Ver Instagram</a>
+          <a class="contact-action" id="instagramBtn" href="#" target="_blank" rel="noopener">
+            <i class="fa-brands fa-instagram"></i> Ver perfil
+          </a>
         </article>
 
         <article class="mini-card contact-card">
           <div class="contact-icon"><i class="fa-brands fa-pix"></i></div>
           <div class="contact-content">
-            <strong>Chave Pix</strong>
-            <p id="pixKey">75981452556</p>
+            <strong>Chave Pix (Celular)</strong>
+            <p id="pixKey">75991606449</p>
           </div>
           <button class="copy-pix" type="button" id="copyPixBtn">
-            <i class="fa-regular fa-copy" id="copyPixIcon"></i> <span id="copyPixText">Copiar chave Pix</span>
+            <i class="fa-regular fa-copy" id="copyPixIcon"></i>
+            <span id="copyPixText">Copiar chave Pix</span>
           </button>
         </article>
 
@@ -443,87 +1112,125 @@
           <div class="contact-icon"><i class="fa-regular fa-clock"></i></div>
           <div class="contact-content">
             <strong>Atendimento</strong>
-            <p>Domingo a sexta, mediante disponibilidade.</p>
+            <p>Domingo a sexta, mediante disponibilidade de agenda.</p>
           </div>
         </article>
       </div>
     </section>
 
-    <footer>© <span id="year"></span> Evini Cakes. Cardápio digital para pedidos.</footer>
+    <footer>© <span id="year"></span> Evini Cakes. Cardápio digital interativo.</footer>
   </main>
+
+  <!-- Barra Fixa Inferior para Mobile -->
+  <div class="mobile-bottom-bar" id="mobileBottomBar">
+    <div class="mobile-bar-info">
+      <span id="mobileBarStatus">Total estimado</span>
+      <strong id="mobileBarTotal">R$ 0</strong>
+    </div>
+    <button type="button" class="btn btn-primary mobile-bar-btn" id="mobileBarAction">
+      <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido
+    </button>
+  </div>
 
   <div class="toast" id="toast">Item atualizado!</div>
 
   <script>
-    // --- Configurações Iniciais ---
     const CONFIG = {
-      whatsappNumber: "5575981452556", // Número atualizado
+      whatsappNumber: "5575981452556",
       whatsappLabel: "+55 75 98145-2556",
-      pixKey: "75981452556", // Chave Pix atualizada para coincidir
+      pixKey: "75991606449",
       instagram: "@evinicakes",
       instagramUrl: "https://www.instagram.com/evinicakes",
       logoUrl: "https://i.imgur.com/Wlt0lRE.png",
-      heroImageUrl: "https://i.imgur.com/ZeWENNS.jpeg"
+      heroImageUrl: "https://i.imgur.com/ZeWENNS.jpeg",
+      maxFillings: 2
     };
 
     const catalog = {
       size: [
-        { id:"13cm", title:"13cm", sub:"Rende em média 12 fatias", price:80 },
-        { id:"15cm", title:"15cm", sub:"Rende em média 15 fatias", price:95 },
-        { id:"17cm", title:"17cm", sub:"Rende em média 20 fatias", price:115 },
-        { id:"20cm", title:"20cm", sub:"Rende em média 24 fatias", price:150 },
-        { id:"23cm", title:"23cm", sub:"Rende em média 32 fatias", price:200 },
-        { id:"25cm", title:"25cm", sub:"Rende em média 37 fatias", price:260 },
-        { id:"27cm", title:"27cm", sub:"Rende em média 48 fatias", price:300 }
+        { id: "13cm", title: "13 cm", sub: "Rende em média 12 fatias", price: 80 },
+        { id: "15cm", title: "15 cm", sub: "Rende em média 15 fatias", price: 95 },
+        { id: "17cm", title: "17 cm", sub: "Rende em média 20 fatias", price: 115 },
+        { id: "20cm", title: "20 cm", sub: "Rende em média 24 fatias", price: 150 },
+        { id: "23cm", title: "23 cm", sub: "Rende em média 32 fatias", price: 200 },
+        { id: "25cm", title: "25 cm", sub: "Rende em média 37 fatias", price: 260 },
+        { id: "27cm", title: "27 cm", sub: "Rende em média 48 fatias", price: 300 }
       ],
       mass: [
-        { id:"simples", title:"Simples", sub:"Massa clássica", price:0 },
-        { id:"chocolate", title:"Chocolate", sub:"Massa de chocolate", price:0 }
+        { id: "simples", title: "Simples (Branca)", sub: "Massa clássica fofinha", price: 0 },
+        { id: "chocolate", title: "Chocolate", sub: "Massa de chocolate 50% cacau", price: 0 }
       ],
       filling: [
-        { id:"brigadeiro-gourmet", title:"Brigadeiro Gourmet", sub:"Recheio simples", price:0 },
-        { id:"brigadeiro-branco", title:"Brigadeiro Branco", sub:"Recheio simples", price:0 },
-        { id:"beijinho", title:"Beijinho", sub:"Recheio simples", price:0 },
-        { id:"pacoca", title:"Paçoca", sub:"Recheio simples", price:0 },
-        { id:"maracuja", title:"Maracujá", sub:"Recheio especial", price:10 },
-        { id:"ameixa", title:"Ameixa", sub:"Recheio especial", price:10 },
-        { id:"abacaxi", title:"Abacaxi", sub:"Recheio especial", price:10 },
-        { id:"oreo", title:"Oreo", sub:"Recheio especial", price:10 }
+        { id: "brigadeiro-gourmet", title: "Brigadeiro Gourmet", sub: "Recheio tradicional", price: 0 },
+        { id: "brigadeiro-branco", title: "Brigadeiro Branco", sub: "Recheio tradicional", price: 0 },
+        { id: "beijinho", title: "Beijinho", sub: "Recheio tradicional", price: 0 },
+        { id: "pacoca", title: "Paçoca", sub: "Recheio tradicional", price: 0 },
+        { id: "maracuja", title: "Maracujá", sub: "Recheio especial", price: 10 },
+        { id: "ameixa", title: "Ameixa", sub: "Recheio especial", price: 10 },
+        { id: "abacaxi", title: "Abacaxi", sub: "Recheio especial", price: 10 },
+        { id: "oreo", title: "Oreo", sub: "Recheio especial", price: 10 }
       ],
       covering: [
-        { id:"chantininho", title:"Chantininho", sub:"Cobertura tradicional", price:0 },
-        { id:"naked-cake", title:"Naked Cake", sub:"Acabamento aparente e delicado", price:0 }
+        { id: "chantininho", title: "Chantininho", sub: "Cobertura tradicional cremosa", price: 0 },
+        { id: "naked-cake", title: "Naked Cake", sub: "Acabamento aparente e delicado", price: 0 }
       ],
       topper: [
-        { id:"sem-topo", title:"Sem topo", sub:"Apenas o bolo", price:0 },
-        { id:"combinar-whatsapp", title:"Combinar pelo WhatsApp", sub:"Definir detalhes", price:0 }
+        { id: "sem-topo", title: "Sem topo", sub: "Apenas o bolo confeitado", price: 0 },
+        { id: "combinar-whatsapp", title: "Combinar pelo WhatsApp", sub: "Definir tema e detalhes", price: 0 }
       ]
     };
 
-    const labels = { size:"Tamanho", mass:"Massa", filling:"Recheio", covering:"Cobertura", topper:"Topo de bolo" };
+    const labels = {
+      size: "Tamanho",
+      mass: "Massa",
+      filling: "Recheio",
+      covering: "Cobertura",
+      topper: "Topo de bolo"
+    };
 
-    // --- Estado da Aplicação (Arrays para múltipla escolha) ---
-    const state = { size: null, mass: [], filling: [], covering: null, topper: null };
+    const nextStepMap = {
+      size: "#group-mass",
+      mass: "#group-filling",
+      filling: "#group-covering",
+      covering: "#group-topper",
+      topper: "#group-date"
+    };
+
+    const state = {
+      size: null,
+      mass: [],
+      filling: [],
+      covering: null,
+      topper: null
+    };
+
     const required = ["size", "mass", "filling", "covering", "topper"];
 
-    // --- Utilitários ---
-    const money = val => val.toLocaleString("pt-BR", { style:"currency", currency:"BRL", maximumFractionDigits:0 });
+    const money = val => val.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
     const byId = id => document.getElementById(id);
     const toastEl = byId("toast");
-    
+
     function showToast(msg) {
       toastEl.textContent = msg;
       toastEl.classList.add("show");
       clearTimeout(showToast.timer);
-      showToast.timer = setTimeout(() => toastEl.classList.remove("show"), 2000);
+      showToast.timer = setTimeout(() => toastEl.classList.remove("show"), 2400);
     }
 
-    // --- Renderização Dinâmica ---
+    function scrollToTarget(selector, delay = 260) {
+      setTimeout(() => {
+        const el = document.querySelector(selector);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, delay);
+    }
+
     function renderOptions(targetId, key) {
-      const isMulti = key === 'mass' || key === 'filling';
+      const isMulti = key === "mass" || key === "filling";
       byId(targetId).innerHTML = catalog[key].map(item => `
         <button class="option" type="button" data-key="${key}" data-id="${item.id}">
-          <div class="indicator ${isMulti ? 'checkbox' : 'radio'}">
+          <div class="indicator ${isMulti ? "checkbox" : "radio"}">
             <i class="fa-solid fa-check"></i>
           </div>
           <div class="option-content">
@@ -553,26 +1260,58 @@
       return getCartItems().reduce((sum, item) => sum + item.price, 0);
     }
 
-    // --- Lógica de Seleção e UI ---
     function selectOption(key, id) {
-      const isMulti = key === 'mass' || key === 'filling';
-      if (isMulti) {
-        const index = state[key].indexOf(id);
+      if (key === "filling") {
+        const index = state.filling.indexOf(id);
         if (index > -1) {
-          state[key].splice(index, 1); // Remove se já selecionado
-        } else {
-          state[key].push(id); // Adiciona se não estiver
+          state.filling.splice(index, 1);
+          updateUI();
+          showToast("Recheio removido.");
+          return;
         }
-      } else {
-        state[key] = id; // Substitui para escolhas únicas
+
+        if (state.filling.length >= CONFIG.maxFillings) {
+          showToast(`Escolha no máximo ${CONFIG.maxFillings} recheios! Desmarque um para trocar.`);
+          return;
+        }
+
+        state.filling.push(id);
+        updateUI();
+
+        if (state.filling.length === CONFIG.maxFillings) {
+          showToast("2 recheios selecionados! Avançando...");
+          scrollToTarget(nextStepMap.filling);
+        } else {
+          showToast("1º recheio escolhido! Escolha mais 1 ou toque em continuar.");
+        }
+        return;
       }
-      
+
+      if (key === "mass") {
+        const index = state.mass.indexOf(id);
+        if (index > -1) {
+          state.mass.splice(index, 1);
+          updateUI();
+          showToast("Massa removida.");
+        } else {
+          state.mass.push(id);
+          updateUI();
+          showToast("Massa selecionada!");
+          scrollToTarget(nextStepMap.mass);
+        }
+        return;
+      }
+
+      state[key] = id;
       updateUI();
-      showToast(`${labels[key]} atualizado!`);
+      showToast(`${labels[key]} selecionado!`);
+
+      if (nextStepMap[key]) {
+        scrollToTarget(nextStepMap[key]);
+      }
     }
 
     function updateUI() {
-      // Classes das opções (Selected)
       document.querySelectorAll(".option").forEach(opt => {
         const key = opt.dataset.key;
         const id = opt.dataset.id;
@@ -580,38 +1319,45 @@
         opt.classList.toggle("selected", isSelected);
       });
 
-      // Carrinho
+      const fillingCount = state.filling.length;
+      byId("fillingCounterBadge").textContent = `Escolha até ${CONFIG.maxFillings} (${fillingCount}/${CONFIG.maxFillings})`;
+      byId("fillings").classList.toggle("max-reached", fillingCount >= CONFIG.maxFillings);
+      byId("fillingNextHelper").classList.toggle("visible", fillingCount === 1);
+
       const items = getCartItems();
+      const totalValue = money(calcTotal());
       const countTxt = `${items.length} ${items.length === 1 ? "item" : "itens"}`;
+
       byId("cartCount").textContent = countTxt;
-      byId("cartTotal").textContent = money(calcTotal());
-      
-      byId("cartList").innerHTML = !items.length 
-        ? `<div class="cart-empty">Comece escolhendo o tamanho do bolo</div>`
+      byId("cartTotal").textContent = totalValue;
+      byId("mobileBarTotal").textContent = totalValue;
+
+      byId("cartList").innerHTML = !items.length
+        ? `<div class="cart-empty">Comece escolhendo o tamanho do bolo no passo 1</div>`
         : items.map(item => `
           <div class="cart-item">
             <div class="cart-item-info">
               <span>${item.label}</span>
               <strong>${item.title}</strong>
             </div>
-            <div class="cart-item-price">${item.price > 0 ? money(item.price) : "Incluso"}</div>
+            <div class="cart-item-price">${item.price > 0 ? "+ " + money(item.price) : "Incluso"}</div>
           </div>
         `).join("");
 
-      // Barra de progresso
-      const completed = required.filter(key => Array.isArray(state[key]) ? state[key].length > 0 : state[key]).length;
+      const completed = required.filter(key => Array.isArray(state[key]) ? state[key].length > 0 : Boolean(state[key])).length;
       const percent = Math.round((completed / required.length) * 100);
+
       byId("progressText").textContent = `${completed} de ${required.length} etapas concluídas`;
       byId("progressPercent").textContent = `${percent}%`;
       byId("progressFill").style.width = `${percent}%`;
+      byId("mobileBarStatus").textContent = completed === required.length ? "Pedido pronto para envio!" : `${completed}/${required.length} etapas • Total estimado`;
 
       byId("steps").innerHTML = required.map((key, index) => {
-        const isDone = Array.isArray(state[key]) ? state[key].length > 0 : state[key];
-        return `<a class="step-pill ${isDone ? "active" : ""}" href="#group-${key}">${isDone ? "✓" : index + 1} ${labels[key]}</a>`;
+        const isDone = Array.isArray(state[key]) ? state[key].length > 0 : Boolean(state[key]);
+        return `<a class="step-pill ${isDone ? "active" : ""}" href="#group-${key}">${isDone ? '<i class="fa-solid fa-check"></i>' : index + 1 + "."} ${labels[key]}</a>`;
       }).join("");
     }
 
-    // --- Finalização ---
     function formatDate(val) {
       if (!val) return "Não informada";
       const [y, m, d] = val.split("-");
@@ -620,35 +1366,36 @@
 
     function finishOrder() {
       const missing = required.filter(key => Array.isArray(state[key]) ? state[key].length === 0 : !state[key]);
-      
+
       if (missing.length) {
-        showToast(`Falta preencher: ${missing.map(k => labels[k]).join(", ")}`);
-        document.querySelector(`#group-${missing[0]}`).scrollIntoView({ behavior: "smooth", block: "start" });
+        showToast(`Falta escolher: ${missing.map(k => labels[k]).join(", ")}`);
+        scrollToTarget(`#group-${missing[0]}`, 50);
         return;
       }
-      
+
       const dateInput = byId("desiredDate");
       if (!dateInput.value) {
-        showToast("Informe a data desejada");
+        showToast("Por favor, informe a data desejada!");
         dateInput.scrollIntoView({ behavior: "smooth", block: "center" });
-        dateInput.focus();
+        setTimeout(() => dateInput.focus(), 350);
         return;
       }
 
       const notes = byId("notes").value.trim();
       const lines = getCartItems().map(item => {
-        const p = item.price > 0 ? ` - ${money(item.price)}` : "";
-        return `- ${item.label}: ${item.title}${p}`;
+        const p = item.price > 0 ? ` (${money(item.price)})` : "";
+        return `• *${item.label}:* ${item.title}${p}`;
       });
 
       const message = [
-        "Olá, Evini Cakes! Gostaria de fazer um pedido.\n",
-        "*Pedido Personalizado*",
-        `*Data desejada:* ${formatDate(dateInput.value)}\n`,
+        "Olá, *Evini Cakes*! Gostaria de fazer um pedido:\n",
+        "🎂 *RESUMO DO PEDIDO*",
         ...lines,
-        `\n*Total estimado:* ${money(calcTotal())}`,
-        `*Observações:* ${notes || "Nenhuma."}`,
-        "\nPode confirmar a disponibilidade?"
+        `\n📅 *Data desejada:* ${formatDate(dateInput.value)}`,
+        `📝 *Observações:* ${notes || "Nenhuma."}`,
+        `\n💰 *Total estimado:* ${money(calcTotal())}`,
+        `🔑 *Chave Pix:* ${CONFIG.pixKey}`,
+        "\nPodemos confirmar a disponibilidade?"
       ].join("\n");
 
       const cleanNum = CONFIG.whatsappNumber.replace(/[^0-9]/g, "");
@@ -660,52 +1407,65 @@
       byId("notes").value = "";
       byId("desiredDate").value = "";
       updateUI();
-      showToast("Carrinho limpo!");
+      showToast("Pedido reiniciado!");
+      scrollToTarget("#group-size", 100);
     }
 
-    // --- Pix Copy ---
     async function copyPix() {
       const btn = byId("copyPixBtn");
       try {
         await navigator.clipboard.writeText(CONFIG.pixKey);
         btn.classList.add("copied");
-        byId("copyPixText").textContent = "Copiada!";
+        byId("copyPixText").textContent = "Chave Copiada!";
         byId("copyPixIcon").className = "fa-solid fa-check";
-        showToast("Chave Pix copiada!");
-        
+        showToast(`Chave Pix (${CONFIG.pixKey}) copiada!`);
+
         setTimeout(() => {
           btn.classList.remove("copied");
           byId("copyPixText").textContent = "Copiar chave Pix";
           byId("copyPixIcon").className = "fa-regular fa-copy";
-        }, 2000);
+        }, 2200);
       } catch (err) {
-        showToast("Erro ao copiar chave.");
+        showToast(`Chave Pix: ${CONFIG.pixKey}`);
       }
     }
 
-    // --- Setup Inicial ---
     renderOptions("sizes", "size");
     renderOptions("masses", "mass");
     renderOptions("fillings", "filling");
     renderOptions("coverings", "covering");
     renderOptions("toppers", "topper");
 
-    // Event Delegation para as opções funcionarem perfeitamente no mobile
     document.addEventListener("click", e => {
       const btn = e.target.closest(".option");
       if (btn) selectOption(btn.dataset.key, btn.dataset.id);
     });
 
+    byId("btnSkipSecondFilling").addEventListener("click", () => {
+      scrollToTarget("#group-covering", 50);
+    });
+
+    byId("desiredDate").addEventListener("change", e => {
+      updateUI();
+      if (e.target.value) {
+        showToast("Data selecionada!");
+        scrollToTarget("#group-notes", 250);
+      }
+    });
+
     byId("finishOrder").addEventListener("click", finishOrder);
+    byId("mobileBarAction").addEventListener("click", finishOrder);
     byId("clearOrder").addEventListener("click", clearOrder);
     byId("copyPixBtn").addEventListener("click", copyPix);
-    byId("desiredDate").addEventListener("change", updateUI);
-    
+
+    const todayStr = new Date().toISOString().split("T")[0];
+    byId("desiredDate").setAttribute("min", todayStr);
+
     byId("year").textContent = new Date().getFullYear();
     byId("phoneText").textContent = CONFIG.whatsappLabel;
     byId("pixKey").textContent = CONFIG.pixKey;
     byId("instagramText").textContent = CONFIG.instagram;
-    
+
     const wppLink = `https://wa.me/${CONFIG.whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Olá, Evini Cakes!")}`;
     byId("whatsappContactBtn").href = wppLink;
     byId("instagramBtn").href = CONFIG.instagramUrl;
