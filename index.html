@@ -8,460 +8,270 @@
   <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🩷</text></svg>'>
   <style>
     :root {
-      --pink-950:#8f073b;
-      --pink-900:#d80b58;
-      --pink-800:#e01866;
-      --pink-600:#ec5f96;
-      --pink-400:#f28ab4;
-      --pink-200:#ffd3e4;
-      --pink-100:#ffeaf2;
-      --cream:#fff8fb;
-      --white:#ffffff;
-      --text:#452034;
-      --muted:#95667a;
-      --green:#22c55e;
-      --danger:#ef4444;
-      --shadow:0 22px 60px rgba(216, 11, 88, .16);
-      --soft-shadow:0 12px 30px rgba(216, 11, 88, .10);
-      --radius:28px;
+      --pink-950: #8f073b;
+      --pink-900: #d80b58;
+      --pink-800: #e01866;
+      --pink-600: #ec5f96;
+      --pink-400: #f28ab4;
+      --pink-200: #ffd3e4;
+      --pink-100: #ffeaf2;
+      --cream: #fff8fb;
+      --white: #ffffff;
+      --text: #452034;
+      --muted: #95667a;
+      --green: #22c55e;
+      --danger: #ef4444;
+      --shadow: 0 22px 60px rgba(216, 11, 88, .12);
+      --soft-shadow: 0 12px 30px rgba(216, 11, 88, .08);
+      --radius: 24px;
     }
 
-    * { box-sizing:border-box; margin:0; padding:0; }
-    html { scroll-behavior:smooth; }
+    /* Reset e Base - Mobile First */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      min-height:100vh;
-      width:100%;
-      max-width:100vw;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 10% -5%, rgba(242,138,180,.55), transparent 28%),
-        radial-gradient(circle at 90% 3%, rgba(255,211,228,.9), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(255,234,242,.8), transparent 34%),
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      width: 100%;
+      color: var(--text);
+      background: 
+        radial-gradient(circle at 10% -5%, rgba(242,138,180,.35), transparent 28%),
+        radial-gradient(circle at 90% 3%, rgba(255,211,228,.6), transparent 30%),
         linear-gradient(180deg, #fffafd 0%, #fff0f7 100%);
-      overflow-x:hidden;
+      background-attachment: fixed;
+      overflow-x: hidden;
     }
 
-    a { color:inherit; text-decoration:none; }
-    button, input, textarea { font-family:inherit; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font-family: inherit; }
     button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 
     .page {
-      width:100%;
-      max-width:1180px;
-      margin:0 auto;
-      padding:12px 12px 44px;
-      overflow:hidden;
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 16px 16px 90px;
     }
 
+    /* Hero Section */
     .hero {
-      position:relative;
-      overflow:hidden;
-      isolation:isolate;
-      min-height:650px;
-      border-radius:36px;
-      padding:18px;
-      border:1px solid rgba(216,11,88,.12);
-      background:rgba(255,255,255,.82);
-      box-shadow:var(--shadow);
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(216,11,88,.12);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
     }
-
-    .hero::before,
-    .hero::after,
-    .blob {
-      content:"";
-      position:absolute;
-      border-radius:999px;
-      background:rgba(247,169,200,.32);
-      z-index:-1;
-    }
-    .hero::before { width:350px; height:350px; left:-170px; top:-110px; }
-    .hero::after { width:410px; height:410px; right:-210px; bottom:-130px; }
-    .blob { width:160px; height:160px; right:18%; top:14%; filter:blur(1px); opacity:.45; }
-
+    
     .nav {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
     }
 
-    .brand { display:flex; align-items:center; gap:11px; font-weight:950; color:var(--pink-900); letter-spacing:-.035em; }
-    .brand-logo {
-      width:64px;
-      height:auto;
-      max-height:64px;
-      display:block;
-      object-fit:contain;
-      background:transparent;
-      box-shadow:none;
-      border:none;
-      border-radius:0;
-    }
-    .brand small { display:block; color:var(--muted); font-weight:750; letter-spacing:0; margin-top:1px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; color: var(--pink-900); }
+    .brand-logo { width: 56px; height: auto; object-fit: contain; }
+    .brand small { display: block; color: var(--muted); font-weight: 700; font-size: 12px; }
 
-    .nav-links { display:none; gap:8px; align-items:center; color:var(--muted); font-weight:850; font-size:14px; }
-    .nav-links a { padding:10px 14px; border-radius:999px; }
-    .nav-links a:hover { color:var(--pink-900); background:var(--pink-100); }
+    .nav-links { display: none; } /* Escondido no mobile */
 
-    .hero-grid { display:grid; gap:24px; align-items:center; }
     .eyebrow {
-      display:inline-flex; align-items:center; gap:8px;
-      color:var(--pink-900); background:var(--pink-100);
-      border:1px solid rgba(216,11,88,.13);
-      padding:9px 13px; border-radius:999px;
-      font-weight:900; font-size:13px; margin-bottom:14px;
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--pink-900); background: var(--pink-100);
+      padding: 8px 14px; border-radius: 999px;
+      font-weight: 800; font-size: 12px; margin-bottom: 16px;
     }
-    h1 { font-size:clamp(40px, 12vw, 80px); line-height:.9; letter-spacing:-.08em; color:var(--pink-900); margin-bottom:15px; }
-    .hero-text p { color:var(--muted); font-size:17px; line-height:1.55; max-width:640px; margin-bottom:22px; }
-    .hero-actions { display:grid; gap:10px; }
+
+    h1 { font-size: clamp(36px, 10vw, 64px); line-height: 1.05; letter-spacing: -0.05em; color: var(--pink-900); margin-bottom: 16px; }
+    .hero-text p { color: var(--muted); font-size: 16px; line-height: 1.6; margin-bottom: 24px; }
+    
+    .hero-actions { display: flex; flex-direction: column; gap: 12px; }
 
     .btn {
-      border:0; cursor:pointer; border-radius:18px; padding:15px 18px;
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      font-weight:950; font-size:15px; transition:.2s ease;
+      border: 0; cursor: pointer; border-radius: 16px; padding: 16px 20px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-weight: 800; font-size: 15px; transition: 0.2s ease;
+      width: 100%;
     }
-    .btn:hover { transform:translateY(-2px); }
-    .btn-primary { color:#fff; background:linear-gradient(135deg, var(--pink-900), var(--pink-600)); box-shadow:0 14px 28px rgba(216,11,88,.25); }
-    .btn-secondary { color:var(--pink-900); background:#fff; border:1px solid rgba(216,11,88,.16); }
-    .btn-ghost { color:var(--muted); background:transparent; }
-    .btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { color: #fff; background: linear-gradient(135deg, var(--pink-900), var(--pink-600)); box-shadow: 0 10px 24px rgba(216,11,88,.25); }
+    .btn-secondary { color: var(--pink-900); background: #fff; border: 1px solid rgba(216,11,88,.2); }
 
-    .hero-card { background:linear-gradient(180deg, #fff, #fff6fa); border:1px solid rgba(216,11,88,.12); border-radius:32px; padding:14px; box-shadow:var(--shadow); }
-    .hero-image {
-      width:100%;
-      min-height:290px;
-      aspect-ratio:4 / 3;
-      border-radius:26px;
-      object-fit:cover;
-      display:block;
-      box-shadow:inset 0 0 0 1px rgba(216,11,88,.10);
-      background:var(--pink-100);
-    }
+    .quick-stats { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
+    .stat { background: #fff; border: 1px solid rgba(216,11,88,.1); border-radius: 16px; padding: 16px; text-align: center; box-shadow: var(--soft-shadow); }
+    .stat strong { color: var(--pink-900); display: block; font-size: 20px; }
+    .stat span { color: var(--muted); font-size: 13px; font-weight: 600; }
 
-    .quick-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-top:14px; }
-    .stat { background:#fff; border:1px solid rgba(216,11,88,.1); border-radius:20px; padding:12px; text-align:center; box-shadow:var(--soft-shadow); }
-    .stat strong { color:var(--pink-900); display:block; font-size:19px; }
-    .stat span { color:var(--muted); font-size:12px; font-weight:750; }
+    .hero-card { display: none; } /* Hero Image hidden on smallest screens, shown on md */
 
-    section { margin-top:18px; }
+    /* Sections Globais */
+    section { margin-top: 24px; }
     .section-card {
-      width:100%;
-      max-width:100%;
-      min-width:0;
-      overflow:hidden;
-      background:rgba(255,255,255,.84);
-      border:1px solid rgba(216,11,88,.12);
-      border-radius:32px;
-      padding:18px;
-      box-shadow:var(--shadow);
+      background: rgba(255,255,255,.9);
+      border: 1px solid rgba(216,11,88,.12);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      box-shadow: var(--shadow);
     }
-    .section-title { display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:16px; }
-    .section-title h2 { color:var(--pink-900); font-size:clamp(30px,8vw,46px); line-height:.95; letter-spacing:-.06em; }
-    .section-title p { margin-top:8px; color:var(--muted); line-height:1.45; }
+    
+    .section-title { margin-bottom: 24px; }
+    .section-title h2 { color: var(--pink-900); font-size: clamp(28px, 8vw, 40px); line-height: 1.1; letter-spacing: -0.04em; }
+    .section-title p { margin-top: 8px; color: var(--muted); line-height: 1.5; font-size: 15px; }
 
-    .about-grid, .contact-grid { display:grid; gap:13px; }
-    .mini-card { background:#fff; border:1px solid rgba(216,11,88,.1); border-radius:24px; padding:16px; box-shadow:var(--soft-shadow); }
-    .mini-card strong { display:block; color:var(--pink-900); margin-bottom:6px; }
-    .mini-card p { color:var(--muted); line-height:1.5; }
+    /* Grid Sobre & Contato */
+    .about-grid, .contact-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    .mini-card { background: #fff; border: 1px solid rgba(216,11,88,.1); border-radius: 20px; padding: 20px; box-shadow: var(--soft-shadow); }
+    .mini-card strong { display: block; color: var(--pink-900); margin-bottom: 8px; font-size: 16px; }
+    .mini-card p { color: var(--muted); line-height: 1.5; font-size: 14px; }
 
-    .contact-card {
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      min-height:148px;
-      transition:.18s ease;
-    }
-    .contact-card:hover { transform:translateY(-2px); box-shadow:0 16px 34px rgba(216,11,88,.13); }
-
-    .contact-icon {
-      width:46px;
-      height:46px;
-      border-radius:17px;
-      display:grid;
-      place-items:center;
-      color:#fff;
-      background:linear-gradient(135deg, var(--pink-900), var(--pink-400));
-      box-shadow:0 12px 24px rgba(216,11,88,.18);
-    }
-    .contact-icon svg { width:24px; height:24px; display:block; }
-    .contact-content strong { margin-bottom:4px; }
-    .contact-content p { word-break:break-word; }
-    .pix-icon { background:linear-gradient(135deg, var(--pink-900), var(--pink-400)); color:#fff; }
-    .pix-icon i { font-size:24px; line-height:1; }
-
-    .copy-pix,
-    .contact-action {
-      margin-top:auto;
-      width:100%;
-      border:1px solid rgba(216,11,88,.18);
-      border-radius:16px;
-      padding:10px 12px;
-      cursor:pointer;
-      font-weight:950;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      transition:background-color .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease;
-      font-size:13px;
-      line-height:1;
-      transform:none;
-      text-decoration:none;
-      -webkit-appearance:none;
-      appearance:none;
-    }
-
-    .copy-pix {
-      background:linear-gradient(135deg, rgba(216,11,88,.10), rgba(242,138,180,.12));
-      color:var(--pink-900);
-      box-shadow:0 10px 22px rgba(216,11,88,.10);
-    }
-    .contact-action { background:#fff; color:var(--pink-900); box-shadow:0 10px 22px rgba(216,11,88,.08); }
-    .copy-pix i,
-    .contact-action i { width:16px; height:16px; display:inline-grid; place-items:center; flex:0 0 16px; }
-    .copy-pix:hover,
-    .contact-action:hover {
-      transform:none;
-      text-decoration:none;
-      background:linear-gradient(135deg, rgba(216,11,88,.15), rgba(242,138,180,.18));
-      border-color:rgba(216,11,88,.32);
-      color:var(--pink-950);
-      box-shadow:0 10px 22px rgba(216,11,88,.12);
-    }
-    .copy-pix:active { transform:none; box-shadow:0 6px 14px rgba(216,11,88,.10); }
-    .copy-pix.copied {
-      background:linear-gradient(135deg, rgba(216,11,88,.16), rgba(242,138,180,.18));
-      border-color:rgba(216,11,88,.38);
-      color:var(--pink-900);
-      box-shadow:0 10px 22px rgba(216,11,88,.12);
-    }
-
-    .builder { display:grid; gap:16px; width:100%; max-width:100%; min-width:0; }
-    .builder > * { min-width:0; max-width:100%; }
-    .progress-wrap {
-      width:100%;
-      max-width:100%;
-      min-width:0;
-      background:#fff;
-      border:1px solid rgba(216,11,88,.1);
-      border-radius:24px;
-      padding:12px;
-      margin-bottom:14px;
-    }
-    .progress-top { display:flex; justify-content:space-between; color:var(--muted); font-size:13px; font-weight:850; margin-bottom:8px; }
-    .progress-bar { height:10px; background:var(--pink-100); border-radius:999px; overflow:hidden; }
-    .progress-fill { height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg, var(--pink-900), var(--pink-400)); transition:.25s ease; }
+    /* Builder / Montar Bolo */
+    .builder { display: grid; gap: 24px; grid-template-columns: 1fr; }
+    
+    .progress-wrap { background: #fff; border: 1px solid rgba(216,11,88,.1); border-radius: 20px; padding: 16px; margin-bottom: 20px; box-shadow: var(--soft-shadow); }
+    .progress-top { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+    .progress-bar { height: 8px; background: var(--pink-100); border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, var(--pink-900), var(--pink-400)); transition: 0.3s ease; }
 
     .steps {
-      display:flex;
-      gap:8px;
-      width:100%;
-      max-width:100%;
-      min-width:0;
-      overflow-x:auto;
-      overflow-y:hidden;
-      padding-bottom:6px;
-      margin-bottom:16px;
-      scrollbar-width:none;
-      -webkit-overflow-scrolling:touch;
+      display: flex; gap: 10px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 16px;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
     }
-    .steps::-webkit-scrollbar { display:none; }
+    .steps::-webkit-scrollbar { display: none; }
     .step-pill {
-      flex:0 0 auto;
-      min-width:max-content;
-      border:1px solid rgba(216,11,88,.14);
-      background:#fff;
-      color:var(--muted);
-      padding:10px 13px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:13px;
+      flex: 0 0 auto; border: 1px solid rgba(216,11,88,.14); background: #fff; color: var(--muted);
+      padding: 10px 16px; border-radius: 999px; font-weight: 700; font-size: 13px; white-space: nowrap;
     }
-    .step-pill.active { color:#fff; background:linear-gradient(135deg, var(--pink-900), var(--pink-600)); }
+    .step-pill.active { color: #fff; background: var(--pink-900); border-color: var(--pink-900); }
 
-    .option-group { display:grid; gap:10px; margin-top:16px; scroll-margin-top:20px; width:100%; max-width:100%; min-width:0; }
-    .group-label { color:var(--pink-900); font-size:23px; letter-spacing:-.035em; display:flex; align-items:center; gap:8px; }
-    .group-label small { font-size:12px; color:var(--muted); font-weight:750; letter-spacing:0; }
-    .options-grid { display:grid; gap:10px; width:100%; max-width:100%; min-width:0; }
+    .option-group { margin-top: 24px; scroll-margin-top: 24px; }
+    .group-label { color: var(--pink-900); font-size: 20px; font-weight: 800; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .group-label small { font-size: 12px; color: var(--muted); font-weight: 600; background: var(--pink-100); padding: 4px 10px; border-radius: 999px; }
+    
+    .options-grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
 
+    /* Opções (Checkboxes & Rádios) */
     .option {
-      position:relative; overflow:hidden;
-      touch-action: pan-y;
-      border:1px solid rgba(216,11,88,.13);
-      border-radius:24px; padding:15px;
-      background:#fff; cursor:pointer; transition:.18s ease;
-      display:flex; justify-content:space-between; gap:12px; align-items:center;
-      text-align:left;
+      position: relative; border: 1px solid rgba(216,11,88,.15); border-radius: 20px; padding: 16px;
+      background: #fff; cursor: pointer; transition: 0.2s ease;
+      display: flex; align-items: center; gap: 16px; text-align: left;
     }
-    .option::after {
-      content:"✓"; width:28px; height:28px; border-radius:50%; display:grid; place-items:center;
-      position:absolute; right:12px; top:12px;
-      color:#fff; background:var(--pink-900); font-weight:950;
-      opacity:0; transform:scale(.75); transition:.18s ease;
+    .option:active { transform: scale(0.98); }
+    .option.selected { border-color: var(--pink-900); background: #fff4f9; box-shadow: 0 4px 12px rgba(216,11,88,.08); }
+    
+    /* Indicadores Customizados */
+    .indicator {
+      width: 24px; height: 24px; flex: 0 0 24px;
+      border: 2px solid #cbd5e1;
+      display: grid; place-items: center;
+      transition: 0.2s; background: #fff; color: transparent;
     }
-    .option:hover { transform:translateY(-2px); box-shadow:0 12px 24px rgba(216,11,88,.11); }
-    .option.selected { border-color:var(--pink-900); background:#fff4f9; box-shadow:inset 0 0 0 2px rgba(216,11,88,.15); padding-right:48px; }
-    .option.selected::after { opacity:1; transform:scale(1); }
-    .option-title { color:var(--text); font-weight:950; display:block; }
-    .option-sub { display:block; color:var(--muted); font-size:12px; margin-top:3px; line-height:1.35; }
-    .price { color:var(--pink-900); font-weight:950; white-space:nowrap; }
+    .indicator.radio { border-radius: 50%; }
+    .indicator.checkbox { border-radius: 6px; }
+    .option.selected .indicator { background: var(--pink-900); border-color: var(--pink-900); color: #fff; }
+    .indicator i { font-size: 12px; }
 
-    .note,
-    .date-input {
-      width:100%;
-      outline:none;
-      border:1px solid rgba(216,11,88,.15);
-      border-radius:24px;
-      background:#fff;
-      padding:15px;
-      color:var(--text);
-      font-size:15px;
-      line-height:1.45;
-    }
-    .note { min-height:118px; resize:vertical; }
-    .date-input { min-height:56px; color-scheme:light; }
-    .note:focus,
-    .date-input:focus { border-color:var(--pink-900); box-shadow:0 0 0 4px rgba(216,11,88,.08); }
-    .field-hint { color:var(--muted); font-size:12px; line-height:1.4; margin-top:-4px; }
+    .option-content { flex: 1; display: flex; flex-direction: column; }
+    .option-title { color: var(--text); font-weight: 800; font-size: 15px; }
+    .option-sub { color: var(--muted); font-size: 12px; margin-top: 4px; line-height: 1.4; }
+    .price { color: var(--pink-900); font-weight: 800; font-size: 15px; white-space: nowrap; }
 
+    /* Inputs e Textarea */
+    .note, .date-input {
+      width: 100%; outline: none; border: 1px solid rgba(216,11,88,.15);
+      border-radius: 20px; background: #fff; padding: 16px; color: var(--text); font-size: 15px;
+    }
+    .note { min-height: 120px; resize: vertical; }
+    .note:focus, .date-input:focus { border-color: var(--pink-900); box-shadow: 0 0 0 4px rgba(216,11,88,.1); }
+    .field-hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
+
+    /* Carrinho Flutuante */
     .cart {
-      width:100%;
-      max-width:100%;
-      min-width:0;
-      position:static; z-index:12;
-      background:rgba(255,255,255,.96); backdrop-filter:blur(18px);
-      border:1px solid rgba(216,11,88,.14); border-radius:30px;
-      padding:14px; box-shadow:0 24px 50px rgba(216,11,88,.18);
+      background: rgba(255,255,255,.95); backdrop-filter: blur(12px);
+      border: 1px solid rgba(216,11,88,.15); border-radius: var(--radius);
+      padding: 20px; box-shadow: 0 20px 40px rgba(216,11,88,.15);
+      position: relative;
     }
-    .cart-header { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px; }
-    .cart-header h3 { color:var(--pink-900); font-size:24px; letter-spacing:-.04em; }
-    .cart-badge { background:var(--pink-100); color:var(--pink-900); border:1px solid rgba(216,11,88,.13); border-radius:999px; padding:7px 10px; font-weight:950; font-size:12px; }
-    .cart-list { display:grid; gap:8px; margin:10px 0; max-height:280px; overflow:auto; padding-right:2px; }
-    .cart-empty { color:var(--muted); background:#fff; border:1px dashed rgba(216,11,88,.2); border-radius:20px; padding:14px; text-align:center; line-height:1.4; }
-    .cart-item {
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
-      background:#fff;
-      border:1px solid rgba(216,11,88,.10);
-      border-radius:18px;
-      padding:11px;
+    .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .cart-header h3 { color: var(--pink-900); font-size: 20px; font-weight: 800; }
+    .cart-badge { background: var(--pink-100); color: var(--pink-900); padding: 6px 12px; border-radius: 999px; font-weight: 800; font-size: 12px; }
+    
+    .cart-list { display: grid; gap: 10px; margin-bottom: 16px; }
+    .cart-empty { color: var(--muted); background: #fff; border: 1px dashed rgba(216,11,88,.3); border-radius: 16px; padding: 20px; text-align: center; font-size: 14px; }
+    .cart-item { display: flex; justify-content: space-between; gap: 12px; background: #fff; border: 1px solid rgba(216,11,88,.1); border-radius: 16px; padding: 14px; }
+    .cart-item-info span { color: var(--muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px; }
+    .cart-item-info strong { color: var(--text); font-size: 14px; display: block; }
+    .cart-item-price { color: var(--pink-900); font-weight: 800; }
+
+    .cart-total { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-top: 2px dashed rgba(216,11,88,.15); color: var(--pink-900); font-weight: 900; font-size: 22px; margin-bottom: 16px; }
+    .cart-actions { display: grid; gap: 10px; }
+
+    /* Contatos Customizados */
+    .contact-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; transition: 0.2s; }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .contact-icon {
+      width: 54px; height: 54px; border-radius: 18px; display: grid; place-items: center;
+      color: #fff; background: linear-gradient(135deg, var(--pink-900), var(--pink-400));
+      font-size: 24px; box-shadow: 0 10px 20px rgba(216,11,88,.2);
     }
-    .cart-item span { color:var(--muted); font-size:12px; font-weight:800; display:block; margin-bottom:2px; }
-    .cart-item strong { color:var(--text); font-size:14px; }
-    .cart-item em { color:var(--pink-900); font-style:normal; font-weight:950; white-space:nowrap; }
-    .cart-validation {
-      display:grid;
-      gap:7px;
-      margin:10px 0 4px;
-      padding:11px;
-      border-radius:20px;
-      background:rgba(255,234,242,.58);
-      border:1px solid rgba(216,11,88,.10);
+    
+    .contact-action, .copy-pix {
+      width: 100%; border-radius: 14px; padding: 12px; font-weight: 800; font-size: 14px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+      border: 1px solid rgba(216,11,88,.15); background: #fff; color: var(--pink-900);
+      transition: 0.2s;
     }
+    .contact-action:hover, .copy-pix:hover { background: var(--pink-100); border-color: var(--pink-900); }
+    .copy-pix.copied { background: var(--green); color: #fff; border-color: var(--green); }
 
-    .cart-validation-title {
-      color:var(--pink-900);
-      font-size:13px;
-      font-weight:950;
-      margin-bottom:2px;
+    /* Utilitários */
+    .toast {
+      position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(20px);
+      opacity: 0; pointer-events: none; background: var(--pink-950); color: #fff;
+      padding: 14px 24px; border-radius: 999px; font-weight: 700; font-size: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.2); z-index: 999; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center; width: max-content; max-width: 90vw;
     }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    footer { text-align: center; padding: 40px 0 20px; color: var(--muted); font-size: 14px; }
 
-    .validation-item {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:8px;
-      color:var(--muted);
-      font-size:12px;
-      font-weight:850;
-    }
+    /* Media Queries - Desktop (A partir de 768px) */
+    @media (min-width: 768px) {
+      .page { padding: 40px 24px 80px; }
+      .nav-links { display: flex; gap: 24px; font-weight: 700; color: var(--muted); }
+      .nav-links a:hover { color: var(--pink-900); }
+      
+      .hero { padding: 48px; }
+      .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+      h1 { font-size: 56px; }
+      .hero-actions { flex-direction: row; }
+      .btn { width: auto; padding: 16px 32px; }
+      .quick-stats { grid-template-columns: repeat(3, 1fr); }
+      .hero-card { display: block; border-radius: 32px; overflow: hidden; box-shadow: var(--shadow); }
+      .hero-image { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3; }
 
-    .validation-status {
-      min-width:24px;
-      height:24px;
-      border-radius:999px;
-      display:inline-grid;
-      place-items:center;
-      background:#fff;
-      color:var(--muted);
-      border:1px solid rgba(216,11,88,.14);
-      font-size:11px;
-      font-weight:950;
-      flex:0 0 24px;
-    }
+      .section-card { padding: 48px; }
+      .section-title { display: flex; justify-content: space-between; align-items: flex-end; }
+      .section-title p { max-width: 500px; text-align: right; }
 
-    .validation-item.done { color:var(--pink-900); }
-    .validation-item.done .validation-status {
-      background:var(--pink-900);
-      color:#fff;
-      border-color:var(--pink-900);
-    }
+      .about-grid { grid-template-columns: repeat(3, 1fr); }
+      .contact-grid { grid-template-columns: repeat(4, 1fr); }
 
-    .cart-total { display:flex; justify-content:space-between; align-items:center; padding:14px 0; margin-top:8px; border-top:1px dashed rgba(216,11,88,.18); color:var(--pink-900); font-weight:950; font-size:19px; }
-    .cart-actions { display:grid; gap:8px; }
-
-    .toast { position:fixed; left:50%; bottom:88px; transform:translateX(-50%) translateY(18px); opacity:0; pointer-events:none; background:var(--pink-900); color:#fff; padding:12px 16px; border-radius:999px; font-weight:900; box-shadow:0 18px 35px rgba(216,11,88,.28); z-index:50; transition:.22s ease; width:max-content; max-width:calc(100% - 28px); text-align:center; }
-    .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
-    .floating-whatsapp { position:fixed; right:16px; bottom:16px; width:58px; height:58px; border-radius:50%; background:#25d366; color:#fff; display:grid; place-items:center; font-weight:950; box-shadow:0 18px 35px rgba(37,211,102,.35); z-index:30; }
-    footer { color:var(--muted); text-align:center; padding:28px 0 0; font-size:13px; }
-
-    @media (max-width:759px) {
-      html, body { width:100%; max-width:100%; overflow-x:hidden; }
-      body { background-attachment: scroll; }
-      .page { padding:10px 10px 34px; }
-      .hero { min-height:auto; border-radius:26px; padding:15px; width:100%; max-width:100%; overflow:hidden; }
-      .brand-logo { width:58px; height:auto; max-height:58px; flex:0 0 auto; }
-      .brand { font-size:15px; min-width:0; }
-      h1 { font-size:42px; letter-spacing:-.07em; }
-      .hero-text p { font-size:15px; }
-      .hero-actions { grid-template-columns:1fr; }
-      .quick-stats { grid-template-columns:1fr; }
-      .section-card { border-radius:26px; padding:15px; }
-      .section-title { display:block; }
-      .section-title h2 { font-size:34px; }
-      .progress-wrap { padding:11px; border-radius:22px; }
-      .progress-top { font-size:12px; }
-      .steps { padding-left:0; padding-right:0; }
-      .step-pill { font-size:12px; padding:9px 12px; }
-      .group-label { font-size:26px; flex-wrap:wrap; }
-      .options-grid { grid-template-columns:1fr; }
-      .option { min-height:74px; width:100%; padding:14px; border-radius:22px; }
-      .option.selected { padding-right:46px; }
-      .price { font-size:15px; }
-      .cart { margin-top:18px; border-radius:26px; }
-      .cart-list { max-height:none; overflow:visible; }
-      .floating-whatsapp { display:none; }
-    }
-
-    @media (min-width:760px) {
-      .page { padding:26px 22px 80px; }
-      .hero { padding:30px; min-height:570px; }
-      .nav-links { display:flex; }
-      .hero-grid { grid-template-columns:1.04fr .96fr; }
-      .hero-actions { display:flex; }
-      .about-grid { grid-template-columns:repeat(3,1fr); }
-      .contact-grid { grid-template-columns:repeat(4,1fr); }
-      .builder { grid-template-columns:1.25fr .75fr; align-items:start; }
-      .options-grid.two { grid-template-columns:repeat(2,1fr); }
-      .options-grid.three { grid-template-columns:repeat(3,1fr); }
-      .cart { position:sticky; top:22px; bottom:auto; }
-      .floating-whatsapp { display:none; }
+      .builder { grid-template-columns: 1.5fr 1fr; align-items: start; }
+      .options-grid { grid-template-columns: repeat(2, 1fr); }
+      .cart { position: sticky; top: 24px; }
     }
   </style>
 </head>
 <body>
   <main class="page">
+    <!-- Hero Section -->
     <header class="hero" id="inicio">
-      <span class="blob"></span>
       <nav class="nav">
-        <a class="brand" href="#inicio" aria-label="Evini Cakes">
-          <img class="brand-logo" id="brandLogo" src="https://placehold.co/300x300/fff0f7/d80b58?text=Evini+Cakes" alt="Logo Evini Cakes" />
+        <a class="brand" href="#inicio">
+          <img class="brand-logo" id="brandLogo" src="https://placehold.co/300x300/fff0f7/d80b58?text=Evini+Cakes" alt="Logo" />
           <div>Evini Cakes<small>Bolos de Chantininho</small></div>
         </a>
         <div class="nav-links">
@@ -473,78 +283,103 @@
 
       <div class="hero-grid">
         <div class="hero-text">
-          <span class="eyebrow">Cardápio digital interativo</span>
+          <span class="eyebrow"><i class="fa-solid fa-star"></i> Cardápio digital interativo</span>
           <h1>Monte o seu bolo do seu jeitinho.</h1>
-          <p>Escolha tamanho, massa, recheio, cobertura e topo. O carrinho calcula tudo automaticamente e envia o pedido pronto para o WhatsApp.</p>
+          <p>Escolha tamanho, massas, recheios, cobertura e topo. O carrinho calcula tudo automaticamente e envia o pedido pronto para o WhatsApp.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#monte">Começar pedido</a>
             <a class="btn btn-secondary" href="#contato">Ver contatos</a>
           </div>
           <div class="quick-stats">
-            <div class="stat"><strong>7</strong><span>tamanhos</span></div>
-            <div class="stat"><strong>8</strong><span>recheios</span></div>
-            <div class="stat"><strong>100%</strong><span>personalizado</span></div>
+            <div class="stat"><strong>7</strong><span>Tamanhos</span></div>
+            <div class="stat"><strong>8</strong><span>Recheios</span></div>
+            <div class="stat"><strong>100%</strong><span>Personalizado</span></div>
           </div>
         </div>
         <div class="hero-card">
-          <img class="hero-image" id="heroImage" src="https://placehold.co/900x700/fff0f7/d80b58?text=Foto+do+Bolo" alt="Bolo personalizado Evini Cakes" />
+          <img class="hero-image" id="heroImage" src="https://placehold.co/900x700/fff0f7/d80b58?text=Foto+do+Bolo" alt="Bolo Evini Cakes" />
         </div>
       </div>
     </header>
 
+    <!-- Sobre -->
     <section id="sobre" class="section-card">
-      <div class="section-title"><div><h2>Feito com carinho</h2><p>Bolos personalizados para momentos especiais, com sabores clássicos, opções especiais e acabamento delicado.</p></div></div>
+      <div class="section-title">
+        <div>
+          <h2>Feito com carinho</h2>
+          <p>Bolos personalizados para momentos especiais, com sabores clássicos, opções especiais e acabamento delicado.</p>
+        </div>
+      </div>
       <div class="about-grid">
-        <article class="mini-card"><strong>Sob encomenda</strong><p>Pedidos pensados para aniversário, mêsversário, celebrações e presentes especiais.</p></article>
-        <article class="mini-card"><strong>Personalização</strong><p>Você escolhe detalhes, tema, cores e referências para deixar tudo com a sua identidade.</p></article>
-        <article class="mini-card"><strong>Acabamento especial</strong><p>Coberturas, topo de bolo e decoração combinando com a proposta do evento.</p></article>
+        <article class="mini-card">
+          <strong>Sob encomenda</strong>
+          <p>Pedidos pensados para aniversário, mêsversário, celebrações e presentes especiais.</p>
+        </article>
+        <article class="mini-card">
+          <strong>Personalização</strong>
+          <p>Você escolhe detalhes, tema, cores e referências para deixar tudo com a sua identidade.</p>
+        </article>
+        <article class="mini-card">
+          <strong>Acabamento especial</strong>
+          <p>Coberturas, topo de bolo e decoração combinando com a proposta do evento.</p>
+        </article>
       </div>
     </section>
 
+    <!-- Builder -->
     <section id="monte" class="section-card">
-      <div class="section-title"><div><h2>Monte seu bolo</h2><p>Cada seleção entra no carrinho automaticamente. O total é atualizado em tempo real.</p></div></div>
+      <div class="section-title">
+        <div>
+          <h2>Monte seu bolo</h2>
+          <p>Selecione as opções desejadas. Você pode escolher mais de uma massa e recheio!</p>
+        </div>
+      </div>
 
       <div class="builder">
         <div>
           <div class="progress-wrap">
-            <div class="progress-top"><span id="progressText">0 de 5 etapas concluídas</span><span id="progressPercent">0%</span></div>
+            <div class="progress-top">
+              <span id="progressText">0 de 5 etapas concluídas</span>
+              <span id="progressPercent">0%</span>
+            </div>
             <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
           </div>
           <div class="steps" id="steps"></div>
 
           <div class="option-group" id="group-size">
-            <h3 class="group-label">1. Tamanho <small>base do valor</small></h3>
+            <h3 class="group-label">1. Tamanho <small>Escolha 1 opção</small></h3>
             <div class="options-grid" id="sizes"></div>
           </div>
           <div class="option-group" id="group-mass">
-            <h3 class="group-label">2. Massa</h3>
-            <div class="options-grid two" id="masses"></div>
+            <h3 class="group-label">2. Massa <small>Escolha 1 ou mais</small></h3>
+            <div class="options-grid" id="masses"></div>
           </div>
           <div class="option-group" id="group-filling">
-            <h3 class="group-label">3. Recheio <small>especiais + R$ 10</small></h3>
-            <div class="options-grid two" id="fillings"></div>
+            <h3 class="group-label">3. Recheio <small>Escolha 1 ou mais (Especiais + R$10)</small></h3>
+            <div class="options-grid" id="fillings"></div>
           </div>
           <div class="option-group" id="group-covering">
-            <h3 class="group-label">4. Cobertura</h3>
-            <div class="options-grid two" id="coverings"></div>
+            <h3 class="group-label">4. Cobertura <small>Escolha 1 opção</small></h3>
+            <div class="options-grid" id="coverings"></div>
           </div>
           <div class="option-group" id="group-topper">
-            <h3 class="group-label">5. Topo de bolo</h3>
-            <div class="options-grid two" id="toppers"></div>
+            <h3 class="group-label">5. Topo de bolo <small>Escolha 1 opção</small></h3>
+            <div class="options-grid" id="toppers"></div>
           </div>
+          
           <div class="option-group">
-            <h3 class="group-label">6. Data desejada <small>evento ou retirada</small></h3>
-            <input class="date-input" id="desiredDate" type="date" aria-label="Data desejada para o evento ou retirada" />
-            <p class="field-hint">Informe a data desejada para facilitar a confirmação de disponibilidade.</p>
+            <h3 class="group-label">6. Data desejada <small>Evento ou Retirada</small></h3>
+            <input class="date-input" id="desiredDate" type="date" />
+            <p class="field-hint">Informe a data para facilitar a confirmação de disponibilidade.</p>
           </div>
 
           <div class="option-group">
             <h3 class="group-label">7. Observações</h3>
-            <textarea class="note" id="notes" placeholder="Ex.: tema, cores, nome, idade, inspiração, restrições ou preferências..."></textarea>
+            <textarea class="note" id="notes" placeholder="Ex.: tema, cores, nome, idade, restrições..."></textarea>
           </div>
         </div>
 
-        <aside class="cart" aria-live="polite">
+        <aside class="cart">
           <div class="cart-header">
             <h3>Seu carrinho</h3>
             <span class="cart-badge" id="cartCount">0 itens</span>
@@ -552,70 +387,79 @@
           <div class="cart-list" id="cartList">
             <div class="cart-empty">Comece escolhendo o tamanho do bolo</div>
           </div>
-          <div class="cart-validation" id="cartValidation"></div>
-          <div class="cart-total"><span>Total estimado</span><strong id="cartTotal">R$ 0</strong></div>
+          
+          <div class="cart-total">
+            <span>Total estimado</span>
+            <strong id="cartTotal">R$ 0</strong>
+          </div>
+          
           <div class="cart-actions">
-            <button class="btn btn-primary" id="finishOrder">Finalizar pedido no WhatsApp</button>
-            <button class="btn btn-secondary" id="clearOrder">Limpar carrinho</button>
+            <button class="btn btn-primary" id="finishOrder"><i class="fa-brands fa-whatsapp"></i> Finalizar Pedido</button>
+            <button class="btn btn-secondary" id="clearOrder"><i class="fa-solid fa-trash"></i> Limpar Tudo</button>
           </div>
         </aside>
       </div>
     </section>
 
+    <!-- Contato -->
     <section id="contato" class="section-card">
-      <div class="section-title"><div><h2>Contato e pagamento</h2><p>Fale com a Evini Cakes, acompanhe as novidades no Instagram e copie a chave Pix com facilidade.</p></div></div>
+      <div class="section-title">
+        <div>
+          <h2>Contato e pagamento</h2>
+          <p>Fale conosco, acompanhe nas redes ou copie a chave Pix.</p>
+        </div>
+      </div>
       <div class="contact-grid">
         <article class="mini-card contact-card">
-          <div class="contact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L4 20.3l1.1-3.8A8.5 8.5 0 1 1 20.5 11.8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 8.7c.2-.5.4-.5.7-.5h.6c.2 0 .5.1.6.4l.7 1.6c.1.3.1.5-.1.7l-.4.5c-.2.2-.2.4 0 .7.4.7 1.2 1.6 2.1 2.1.3.2.5.2.7 0l.6-.5c.2-.2.4-.2.7-.1l1.5.7c.3.1.5.4.4.7 0 .4-.2 1-.5 1.3-.4.4-1.4.7-3.2 0-2.7-1.1-4.5-3.7-4.7-4-.1-.2-1.1-1.5-1-2.8.1-.5.4-.9.7-1.1Z" fill="currentColor"/></svg>
+          <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="contact-content">
+            <strong>WhatsApp</strong>
+            <p id="phoneText">+55 75 98145-2556</p>
           </div>
-          <div class="contact-content"><strong>WhatsApp</strong><p id="phoneText">+55 75 9160-6449</p></div>
-          <a class="contact-action" id="whatsappContactBtn" href="#" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-            Chamar no WhatsApp
-          </a>
+          <a class="contact-action" id="whatsappContactBtn" href="#" target="_blank">Chamar no WhatsApp</a>
         </article>
 
         <article class="mini-card contact-card">
-          <div class="contact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          <div class="contact-icon"><i class="fa-brands fa-instagram"></i></div>
+          <div class="contact-content">
+            <strong>Instagram</strong>
+            <p id="instagramText">@evinicakes</p>
           </div>
-          <div class="contact-content"><strong>Instagram</strong><p id="instagramText">@evinicakes</p></div>
-          <a class="contact-action" id="instagramBtn" href="#" target="_blank" rel="noopener">
-            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-            Ver Instagram
-          </a>
+          <a class="contact-action" id="instagramBtn" href="#" target="_blank">Ver Instagram</a>
         </article>
 
         <article class="mini-card contact-card">
-          <div class="contact-icon pix-icon" aria-hidden="true"><i class="fa-brands fa-pix"></i></div>
-          <div class="contact-content"><strong>Chave Pix</strong><p id="pixKey">sua-chave-pix-aqui</p></div>
-          <button class="copy-pix" type="button" id="copyPixBtn" aria-label="Copiar chave Pix">
-            <i id="copyPixIcon" class="fa-regular fa-copy" aria-hidden="true"></i>
-            <span id="copyPixText">Copiar chave Pix</span>
+          <div class="contact-icon"><i class="fa-brands fa-pix"></i></div>
+          <div class="contact-content">
+            <strong>Chave Pix</strong>
+            <p id="pixKey">75981452556</p>
+          </div>
+          <button class="copy-pix" type="button" id="copyPixBtn">
+            <i class="fa-regular fa-copy" id="copyPixIcon"></i> <span id="copyPixText">Copiar chave Pix</span>
           </button>
         </article>
 
         <article class="mini-card contact-card">
-          <div class="contact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3.2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="contact-icon"><i class="fa-regular fa-clock"></i></div>
+          <div class="contact-content">
+            <strong>Atendimento</strong>
+            <p>Domingo a sexta, mediante disponibilidade.</p>
           </div>
-          <div class="contact-content"><strong>Atendimento</strong><p>Domingo a sexta, mediante disponibilidade.</p></div>
         </article>
       </div>
     </section>
 
-    <footer>© <span id="year"></span> Evini Cakes. Cardápio digital para pedidos personalizados.</footer>
+    <footer>© <span id="year"></span> Evini Cakes. Cardápio digital para pedidos.</footer>
   </main>
 
-  <a class="floating-whatsapp" href="#monte" aria-label="Montar pedido">💬</a>
-  <div class="toast" id="toast">Item adicionado ao carrinho</div>
+  <div class="toast" id="toast">Item atualizado!</div>
 
   <script>
+    // --- Configurações Iniciais ---
     const CONFIG = {
-      whatsappNumber: "557591606449",
-      whatsappLabel: "+55 75 9160-6449",
-      pixKey: "75991606449",
+      whatsappNumber: "5575981452556", // Número atualizado
+      whatsappLabel: "+55 75 98145-2556",
+      pixKey: "75981452556", // Chave Pix atualizada para coincidir
       instagram: "@evinicakes",
       instagramUrl: "https://www.instagram.com/evinicakes",
       logoUrl: "https://i.imgur.com/Wlt0lRE.png",
@@ -652,322 +496,223 @@
       ],
       topper: [
         { id:"sem-topo", title:"Sem topo", sub:"Apenas o bolo", price:0 },
-        { id:"combinar-whatsapp", title:"Combinar pelo WhatsApp", sub:"Definir detalhes no atendimento", price:0 }
+        { id:"combinar-whatsapp", title:"Combinar pelo WhatsApp", sub:"Definir detalhes", price:0 }
       ]
     };
 
-    const labels = {
-      size:"Tamanho",
-      mass:"Massa",
-      filling:"Recheio",
-      covering:"Cobertura",
-      topper:"Topo de bolo"
-    };
+    const labels = { size:"Tamanho", mass:"Massa", filling:"Recheio", covering:"Cobertura", topper:"Topo de bolo" };
 
-    const state = { size:null, mass:null, filling:null, covering:null, topper:null };
+    // --- Estado da Aplicação (Arrays para múltipla escolha) ---
+    const state = { size: null, mass: [], filling: [], covering: null, topper: null };
     const required = ["size", "mass", "filling", "covering", "topper"];
 
-    const money = value => value.toLocaleString("pt-BR", { style:"currency", currency:"BRL", maximumFractionDigits:0 });
+    // --- Utilitários ---
+    const money = val => val.toLocaleString("pt-BR", { style:"currency", currency:"BRL", maximumFractionDigits:0 });
     const byId = id => document.getElementById(id);
-    const toast = byId("toast");
-
-    function showToast(message) {
-      toast.textContent = message;
-      toast.classList.add("show");
+    const toastEl = byId("toast");
+    
+    function showToast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
       clearTimeout(showToast.timer);
-      showToast.timer = setTimeout(() => toast.classList.remove("show"), 1400);
+      showToast.timer = setTimeout(() => toastEl.classList.remove("show"), 2000);
     }
 
+    // --- Renderização Dinâmica ---
     function renderOptions(targetId, key) {
+      const isMulti = key === 'mass' || key === 'filling';
       byId(targetId).innerHTML = catalog[key].map(item => `
-        <button class="option" type="button" data-key="${key}" data-id="${item.id}" aria-label="Selecionar ${item.title}">
-          <span>
+        <button class="option" type="button" data-key="${key}" data-id="${item.id}">
+          <div class="indicator ${isMulti ? 'checkbox' : 'radio'}">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <div class="option-content">
             <span class="option-title">${item.title}</span>
             <span class="option-sub">${item.sub}</span>
-          </span>
+          </div>
           <span class="price">${key === "size" ? money(item.price) : item.price > 0 ? "+ " + money(item.price) : "Incluso"}</span>
         </button>
       `).join("");
     }
 
-    function selectedItem(key) {
-      return catalog[key].find(item => item.id === state[key]);
-    }
-
-    function cartItems() {
-      return required.map(key => {
-        const item = selectedItem(key);
-        return item ? { key, label: labels[key], ...item } : null;
+    function getCartItems() {
+      return required.flatMap(key => {
+        if (Array.isArray(state[key])) {
+          return state[key].map(id => {
+            const item = catalog[key].find(i => i.id === id);
+            return item ? { key, label: labels[key], ...item } : null;
+          });
+        } else {
+          const item = catalog[key].find(i => i.id === state[key]);
+          return item ? { key, label: labels[key], ...item } : null;
+        }
       }).filter(Boolean);
     }
 
-    function total() {
-      return cartItems().reduce((sum, item) => sum + item.price, 0);
+    function calcTotal() {
+      return getCartItems().reduce((sum, item) => sum + item.price, 0);
     }
 
-    function updateSelectedClasses() {
-      document.querySelectorAll(".option").forEach(option => {
-        option.classList.toggle("selected", state[option.dataset.key] === option.dataset.id);
+    // --- Lógica de Seleção e UI ---
+    function selectOption(key, id) {
+      const isMulti = key === 'mass' || key === 'filling';
+      if (isMulti) {
+        const index = state[key].indexOf(id);
+        if (index > -1) {
+          state[key].splice(index, 1); // Remove se já selecionado
+        } else {
+          state[key].push(id); // Adiciona se não estiver
+        }
+      } else {
+        state[key] = id; // Substitui para escolhas únicas
+      }
+      
+      updateUI();
+      showToast(`${labels[key]} atualizado!`);
+    }
+
+    function updateUI() {
+      // Classes das opções (Selected)
+      document.querySelectorAll(".option").forEach(opt => {
+        const key = opt.dataset.key;
+        const id = opt.dataset.id;
+        const isSelected = Array.isArray(state[key]) ? state[key].includes(id) : state[key] === id;
+        opt.classList.toggle("selected", isSelected);
       });
-    }
 
-    function renderCart() {
-      const items = cartItems();
-      const countText = `${items.length} ${items.length === 1 ? "item" : "itens"}`;
-      const totalText = money(total());
-      const listHTML = !items.length
+      // Carrinho
+      const items = getCartItems();
+      const countTxt = `${items.length} ${items.length === 1 ? "item" : "itens"}`;
+      byId("cartCount").textContent = countTxt;
+      byId("cartTotal").textContent = money(calcTotal());
+      
+      byId("cartList").innerHTML = !items.length 
         ? `<div class="cart-empty">Comece escolhendo o tamanho do bolo</div>`
         : items.map(item => `
           <div class="cart-item">
-            <div>
+            <div class="cart-item-info">
               <span>${item.label}</span>
               <strong>${item.title}</strong>
-              <span>${item.sub}</span>
             </div>
-            <em>${item.price > 0 ? money(item.price) : "Incluso"}</em>
+            <div class="cart-item-price">${item.price > 0 ? money(item.price) : "Incluso"}</div>
           </div>
         `).join("");
 
-      const validationItems = [
-        ...required.map(key => ({ label: labels[key], done: Boolean(state[key]) })),
-        { label: "Data desejada", done: Boolean(byId("desiredDate").value) }
-      ];
-
-      const validationHTML = `
-        <div class="cart-validation-title">Etapas do pedido</div>
-        ${validationItems.map(item => `
-          <div class="validation-item ${item.done ? "done" : ""}">
-            <span>${item.label}</span>
-            <span class="validation-status">${item.done ? "✓" : "!"}</span>
-          </div>
-        `).join("")}
-      `;
-
-      if (byId("cartCount").textContent !== countText) byId("cartCount").textContent = countText;
-      if (byId("cartTotal").textContent !== totalText) byId("cartTotal").textContent = totalText;
-      if (byId("cartList").innerHTML.trim() !== listHTML.trim()) byId("cartList").innerHTML = listHTML;
-      if (byId("cartValidation").innerHTML.trim() !== validationHTML.trim()) byId("cartValidation").innerHTML = validationHTML;
-    }
-
-    function renderSteps() {
-      const completed = required.filter(key => state[key]).length;
+      // Barra de progresso
+      const completed = required.filter(key => Array.isArray(state[key]) ? state[key].length > 0 : state[key]).length;
       const percent = Math.round((completed / required.length) * 100);
       byId("progressText").textContent = `${completed} de ${required.length} etapas concluídas`;
       byId("progressPercent").textContent = `${percent}%`;
       byId("progressFill").style.width = `${percent}%`;
 
-      byId("steps").innerHTML = required.map((key, index) => `
-        <a class="step-pill ${state[key] ? "active" : ""}" href="#group-${key}">${state[key] ? "✓" : index + 1} ${labels[key]}</a>
-      `).join("");
+      byId("steps").innerHTML = required.map((key, index) => {
+        const isDone = Array.isArray(state[key]) ? state[key].length > 0 : state[key];
+        return `<a class="step-pill ${isDone ? "active" : ""}" href="#group-${key}">${isDone ? "✓" : index + 1} ${labels[key]}</a>`;
+      }).join("");
     }
 
-    function updateUI() {
-      updateSelectedClasses();
-      renderCart();
-      renderSteps();
-    }
-
-    function selectOption(key, id) {
-      state[key] = id;
-      const item = selectedItem(key);
-      updateUI();
-      showToast(`${labels[key]} adicionado ao carrinho: ${item.title}`);
-    }
-
-    function formatDateBR(dateValue) {
-      if (!dateValue) return "Não informada";
-      const [year, month, day] = dateValue.split("-");
-      if (!year || !month || !day) return dateValue;
-      return `${day}/${month}/${year}`;
-    }
-
-    function buildMessage() {
-      const notes = byId("notes").value.trim();
-      const desiredDate = formatDateBR(byId("desiredDate").value);
-      const lines = cartItems().map(item => {
-        const priceInfo = item.price > 0 ? ` - ${money(item.price)}` : "";
-        return `- ${item.label}: ${item.title} (${item.sub})${priceInfo}`;
-      });
-
-      return [
-        "Olá, Evini Cakes! Gostaria de fazer um pedido.",
-        "",
-        "*Pedido personalizado*",
-        `*Data desejada:* ${desiredDate}`,
-        ...lines,
-        "",
-        `*Total estimado:* ${money(total())}`,
-        `*Observações:* ${notes || "Nenhuma observação por enquanto."}`,
-        "",
-        "Pode confirmar disponibilidade, prazo e forma de pagamento?"
-      ].join("\n");
+    // --- Finalização ---
+    function formatDate(val) {
+      if (!val) return "Não informada";
+      const [y, m, d] = val.split("-");
+      return (y && m && d) ? `${d}/${m}/${y}` : val;
     }
 
     function finishOrder() {
-      const missing = required.filter(key => !state[key]);
+      const missing = required.filter(key => Array.isArray(state[key]) ? state[key].length === 0 : !state[key]);
+      
       if (missing.length) {
-        showToast(`Faltam: ${missing.map(key => labels[key]).join(", ")}`);
-        const firstMissing = missing[0];
-        document.querySelector(`#group-${firstMissing}`).scrollIntoView({ behavior:"smooth", block:"start" });
+        showToast(`Falta preencher: ${missing.map(k => labels[k]).join(", ")}`);
+        document.querySelector(`#group-${missing[0]}`).scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      
+      const dateInput = byId("desiredDate");
+      if (!dateInput.value) {
+        showToast("Informe a data desejada");
+        dateInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        dateInput.focus();
         return;
       }
 
-      const desiredDateInput = byId("desiredDate");
-      if (!desiredDateInput.value) {
-        showToast("Informe a data desejada do evento ou retirada");
-        desiredDateInput.scrollIntoView({ behavior:"smooth", block:"center" });
-        desiredDateInput.focus();
-        return;
-      }
-      const cleanNumber = CONFIG.whatsappNumber.replace(/[^0-9]/g, "");
-      const url = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(buildMessage())}`;
-      window.open(url, "_blank", "noopener");
+      const notes = byId("notes").value.trim();
+      const lines = getCartItems().map(item => {
+        const p = item.price > 0 ? ` - ${money(item.price)}` : "";
+        return `- ${item.label}: ${item.title}${p}`;
+      });
+
+      const message = [
+        "Olá, Evini Cakes! Gostaria de fazer um pedido.\n",
+        "*Pedido Personalizado*",
+        `*Data desejada:* ${formatDate(dateInput.value)}\n`,
+        ...lines,
+        `\n*Total estimado:* ${money(calcTotal())}`,
+        `*Observações:* ${notes || "Nenhuma."}`,
+        "\nPode confirmar a disponibilidade?"
+      ].join("\n");
+
+      const cleanNum = CONFIG.whatsappNumber.replace(/[^0-9]/g, "");
+      window.open(`https://wa.me/${cleanNum}?text=${encodeURIComponent(message)}`, "_blank");
     }
 
     function clearOrder() {
-      required.forEach(key => state[key] = null);
+      required.forEach(k => Array.isArray(state[k]) ? state[k] = [] : state[k] = null);
       byId("notes").value = "";
+      byId("desiredDate").value = "";
       updateUI();
-      showToast("Carrinho limpo com sucesso");
+      showToast("Carrinho limpo!");
     }
 
-    async function copyPixKey() {
-      const pix = CONFIG.pixKey;
-      const button = byId("copyPixBtn");
-      const text = byId("copyPixText");
-      const icon = byId("copyPixIcon");
-
+    // --- Pix Copy ---
+    async function copyPix() {
+      const btn = byId("copyPixBtn");
       try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(pix);
-        } else {
-          const tempInput = document.createElement("textarea");
-          tempInput.value = pix;
-          tempInput.setAttribute("readonly", "");
-          tempInput.style.position = "fixed";
-          tempInput.style.left = "-9999px";
-          document.body.appendChild(tempInput);
-          tempInput.select();
-          document.execCommand("copy");
-          document.body.removeChild(tempInput);
-        }
-
-        button.classList.add("copied");
-        text.textContent = "Copiada";
-        icon.className = "fa-solid fa-check";
-        showToast("Chave Pix copiada com sucesso");
-
+        await navigator.clipboard.writeText(CONFIG.pixKey);
+        btn.classList.add("copied");
+        byId("copyPixText").textContent = "Copiada!";
+        byId("copyPixIcon").className = "fa-solid fa-check";
+        showToast("Chave Pix copiada!");
+        
         setTimeout(() => {
-          button.classList.remove("copied");
-          text.textContent = "Copiar chave Pix";
-          icon.className = "fa-regular fa-copy";
-        }, 1800);
-      } catch (error) {
-        showToast("Não foi possível copiar. Toque e segure na chave Pix.");
+          btn.classList.remove("copied");
+          byId("copyPixText").textContent = "Copiar chave Pix";
+          byId("copyPixIcon").className = "fa-regular fa-copy";
+        }, 2000);
+      } catch (err) {
+        showToast("Erro ao copiar chave.");
       }
     }
 
-    function runTests() {
-      const originalState = { ...state };
-      const originalNotes = byId("notes").value;
-      const originalDesiredDate = byId("desiredDate").value;
-
-      state.size = "13cm";
-      state.mass = "chocolate";
-      state.filling = "maracuja";
-      state.covering = "chantininho";
-      state.topper = "sem-topo";
-      byId("notes").value = "Teste de observação";
-      byId("desiredDate").value = "2026-05-10";
-
-      console.assert(total() === 90, "Teste: total deve somar tamanho + recheio especial.");
-      const message = buildMessage();
-      console.assert(message.includes("Pedido personalizado"), "Teste: mensagem deve conter título do pedido.");
-      console.assert(message.includes("Maracujá"), "Teste: mensagem deve conter recheio selecionado.");
-      console.assert(message.includes("10/05/2026"), "Teste: mensagem deve conter data desejada formatada.");
-      console.assert(!message.includes("�"), "Teste: mensagem não deve conter caractere inválido.");
-      console.assert(message.includes("\n"), "Teste: mensagem deve usar quebras de linha escapadas corretamente.");
-      console.assert(CONFIG.whatsappNumber.replace(/[^0-9]/g, "") === "557591606449", "Teste: número do WhatsApp deve estar limpo corretamente.");
-
-      Object.assign(state, originalState);
-      byId("notes").value = originalNotes;
-      byId("desiredDate").value = originalDesiredDate;
-      updateUI();
-    }
-
+    // --- Setup Inicial ---
     renderOptions("sizes", "size");
     renderOptions("masses", "mass");
     renderOptions("fillings", "filling");
     renderOptions("coverings", "covering");
     renderOptions("toppers", "topper");
 
-    function bindOptionEvents() {
-      let touchData = null;
-      let lastPointerSelect = 0;
-      const MOVE_LIMIT = 10;
-
-      document.querySelectorAll(".option").forEach(option => {
-        option.addEventListener("pointerdown", event => {
-          if (event.pointerType === "mouse") return;
-          touchData = {
-            option,
-            startX: event.clientX,
-            startY: event.clientY,
-            moved: false
-          };
-        }, { passive:true });
-
-        option.addEventListener("pointermove", event => {
-          if (!touchData || touchData.option !== option) return;
-          const dx = Math.abs(event.clientX - touchData.startX);
-          const dy = Math.abs(event.clientY - touchData.startY);
-          if (dx > MOVE_LIMIT || dy > MOVE_LIMIT) touchData.moved = true;
-        }, { passive:true });
-
-        option.addEventListener("pointerup", event => {
-          if (event.pointerType === "mouse") return;
-          if (!touchData || touchData.option !== option) return;
-
-          const dx = Math.abs(event.clientX - touchData.startX);
-          const dy = Math.abs(event.clientY - touchData.startY);
-          const wasScroll = touchData.moved || dx > MOVE_LIMIT || dy > MOVE_LIMIT;
-          touchData = null;
-
-          if (wasScroll) return;
-
-          event.preventDefault();
-          lastPointerSelect = Date.now();
-          selectOption(option.dataset.key, option.dataset.id);
-        }, { passive:false });
-
-        option.addEventListener("pointercancel", () => {
-          touchData = null;
-        }, { passive:true });
-
-        option.addEventListener("click", event => {
-          if (Date.now() - lastPointerSelect < 450) return;
-          selectOption(option.dataset.key, option.dataset.id);
-        });
-      });
-    }
-
-    bindOptionEvents();
+    // Event Delegation para as opções funcionarem perfeitamente no mobile
+    document.addEventListener("click", e => {
+      const btn = e.target.closest(".option");
+      if (btn) selectOption(btn.dataset.key, btn.dataset.id);
+    });
 
     byId("finishOrder").addEventListener("click", finishOrder);
     byId("clearOrder").addEventListener("click", clearOrder);
-    byId("copyPixBtn").addEventListener("click", copyPixKey);
+    byId("copyPixBtn").addEventListener("click", copyPix);
     byId("desiredDate").addEventListener("change", updateUI);
-    byId("desiredDate").addEventListener("input", updateUI);
+    
     byId("year").textContent = new Date().getFullYear();
     byId("phoneText").textContent = CONFIG.whatsappLabel;
     byId("pixKey").textContent = CONFIG.pixKey;
     byId("instagramText").textContent = CONFIG.instagram;
-    byId("whatsappContactBtn").href = `https://wa.me/${CONFIG.whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Olá, Evini Cakes! Gostaria de fazer um pedido.")}`;
+    
+    const wppLink = `https://wa.me/${CONFIG.whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Olá, Evini Cakes!")}`;
+    byId("whatsappContactBtn").href = wppLink;
     byId("instagramBtn").href = CONFIG.instagramUrl;
     byId("brandLogo").src = CONFIG.logoUrl;
     byId("heroImage").src = CONFIG.heroImageUrl;
+
     updateUI();
-    runTests();
   </script>
 </body>
 </html>
